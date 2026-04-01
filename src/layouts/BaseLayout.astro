@@ -1,6 +1,7 @@
 ---
-import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
+import Reviews from "../components/layout/Reviews.astro";
+import Footer from "../components/layout/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -35,6 +36,7 @@ const {
     </head>
     <body class="bg-[#f8fafc] text-[#0b1119]">
         <Navbar />
+        
         <main>
             <slot />
         </main>
