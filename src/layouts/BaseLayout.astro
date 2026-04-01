@@ -1,6 +1,7 @@
 ---
-import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
+import Reviews from "../components/layout/Reviews.astro";
+import Footer from "../components/layout/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 const {
     title = "Webdev Variant - Professional Engineering & Construction Solutions",
     description = "Expert HVAC and Plumbing services for residential and commercial properties",
-    image = "/favicon.svg",
+    image = "/images/logo.avif",
 } = Astro.props;
 ---
 
@@ -22,8 +23,10 @@ const {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={description} />
+        <meta property="og:image" content={image} />
         <title>{title}</title>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/avif" href="/images/logo.avif" />
+        <link rel="apple-touch-icon" href="/images/logo.avif" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -33,6 +36,7 @@ const {
     </head>
     <body class="bg-[#f8fafc] text-[#0b1119]">
         <Navbar />
+        
         <main>
             <slot />
         </main>

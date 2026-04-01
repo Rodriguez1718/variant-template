@@ -1,18 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/layout/Hero.astro";
+import TrustBar from "../components/layout/TrustBar.astro";
+import TemplateGallery from "../components/layout/TemplateGallery.astro";
+import Features from "../components/layout/Features.astro";
+import Reviews from "../components/layout/Reviews.astro";
+import CTA from "../components/layout/CTA.astro";
 ---
 
 <BaseLayout
-	title="Home | Your Company"
-	description="Professional services for all your construction and trade needs"
+	title="Premium Website Templates for Home Services & Trades | Your Company"
+	description="Professional, conversion-optimized website templates built specifically for HVAC, plumbing, electrical, roofing, and landscaping businesses"
 >
 	<Hero
-		title="We Will Be Happy To Take Care Of Your Work"
-		badge="Since 1982"
-		ctaText="Contact Us"
-		ctaLink="/contact"
-		secondaryCtaText="Request a Quote"
-		secondaryCtaLink="/contact"
+		backgroundImage="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&q=80"
+		pretitle="PROFESSIONAL TEMPLATES FOR TRADES"
+		title="GROW YOUR BUSINESS"
+		subtitle="Premium Website Templates Built for Contractors & Home Service Pros"
+		ctaText="BROWSE TEMPLATES"
+		ctaLink="#templates"
 	/>
+
+	<TrustBar />
+
+	<TemplateGallery limit={6} />
+
+	<Features />
+	<Reviews />
+	<CTA />
 </BaseLayout>

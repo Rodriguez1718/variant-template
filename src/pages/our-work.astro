@@ -1,38 +1,284 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/layout/Hero.astro";
+import Hero2 from "../components/layout/Hero2.astro";
+import Button from "../components/ui/Button.astro";
+import { getCollection } from "astro:content";
+
+// Get all templates and trades
+const allTemplates = await getCollection("templates");
+const allTrades = await getCollection("trades");
+
+// Sort trades by order for filter buttons
+const sortedTrades = allTrades.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
     title="Our Work | Your Company"
-    description="View our portfolio of completed projects"
+    description="View our portfolio of completed projects and website templates"
 >
-    <Hero
+    <Hero2
         title="Our Work"
-        subtitle="Showcasing our best projects and achievements"
-        backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop"
+        backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=1080&fit=crop&q=80"
+        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "OUR WORK" }]}
     />
 
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Filter Bar -->
+    <section class="py-8 px-6 bg-white border-b">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap gap-4 items-center justify-between">
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        class="filter-btn px-4 py-2 md:px-6 md:py-2 bg-[var(--color-accent)] text-white font-heading font-bold uppercase text-sm md:text-base"
+                        data-filter="all">All</button
+                    >
+                    {
+                        sortedTrades.map((trade) => (
+                            <button
+                                class="filter-btn px-4 py-2 md:px-6 md:py-2 bg-gray-200 text-gray-700 font-heading font-bold uppercase text-sm md:text-base hover:bg-gray-300"
+                                data-filter={trade.data.slug}
+                            >
+                                {trade.data.name}
+                            </button>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Grid -->
+    <section class="py-16 px-6 bg-[var(--color-background)]">
+        <div class="max-w-7xl mx-auto">
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                id="templates-grid"
+            >
+                {
+                    allTemplates.map((template) => (
+                        <div
+                            class="template-card bg-white shadow-lg hover:shadow-2xl transition-all duration-300 group"
+                            data-trade={template.data.trade}
+                        >
+                            <!-- Template Preview -->
+                            <div class="relative h-64 overflow-hidden bg-gray-200">
+                                <div class="absolute top-4 right-4 z-10">
+                                    <span class="bg-[var(--color-accent)] text-white px-3 py-1 text-xs font-heading font-bold uppercase">
+                                        {template.data.category}
+                                    </span>
+                                </div>
+                                <img
+                                    src={template.data.thumbnail}
+                                    alt={template.data.title}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+
+                            <!-- Template Info -->
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-xs font-heading font-bold uppercase text-[var(--color-primary)] bg-blue-50 px-2 py-1">
+                                        {template.data.trade.toUpperCase()}
+                                    </span>
+                                    <span class="text-xs text-gray-500">
+                                        Mobile Optimized
+                                    </span>
+                                </div>
+                                <h3 class="text-lg md:text-xl font-heading font-bold text-[var(--color-primary)] mb-2">
+                                    {template.data.title}
+                                </h3>
+                                <p class="text-base text-gray-600 mb-4 line-clamp-2">
+                                    {template.data.description}
+                                </p>
+
+                                <div class="flex items-center justify-between">
+                                    <Button
+                                        variant="accent"
+                                        size="sm"
+                                        href={template.data.liveDemoUrl}
+                                        icon={false}
+                                    >
+                                        View Demo
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
             {
-                [1, 2, 3, 4, 5, 6].map((i) => (
-                    <div class="bg-white shadow-lg overflow-hidden">
-                        <div class="bg-gray-300 h-48 flex items-center justify-center">
-                            <p class="text-gray-600">Project {i}</p>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-heading font-bold text-xl mb-2 text-[#304678]">
-                                Project Title {i}
-                            </h3>
-                            <p class="text-gray-600 text-sm">
-                                Description of the project and the services
-                                provided.
-                            </p>
-                        </div>
+                allTemplates.length === 0 && (
+                    <div class="text-center py-12">
+                        <p class="text-xl text-gray-600">
+                            No templates available yet. Check back soon!
+                        </p>
                     </div>
-                ))
+                )
             }
         </div>
     </section>
+
+    <!-- Trust Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div
+                        class="w-16 h-16 bg-[var(--color-accent)]/10 mx-auto mb-4 flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-[var(--color-accent)]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-base md:text-lg text-[var(--color-primary)] mb-2"
+                    >
+                        Money-Back Guarantee
+                    </h3>
+                    <p class="text-sm text-gray-600">30-day refund policy</p>
+                </div>
+                <div>
+                    <div
+                        class="w-16 h-16 bg-[var(--color-accent)]/10 mx-auto mb-4 flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-[var(--color-accent)]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-base md:text-lg text-[var(--color-primary)] mb-2"
+                    >
+                        24/7 Support
+                    </h3>
+                    <p class="text-sm text-gray-600">Always here to help</p>
+                </div>
+                <div>
+                    <div
+                        class="w-16 h-16 bg-[var(--color-accent)]/10 mx-auto mb-4 flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-[var(--color-accent)]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-base md:text-lg text-[var(--color-primary)] mb-2"
+                    >
+                        Free Updates
+                    </h3>
+                    <p class="text-sm text-gray-600">Lifetime template updates</p>
+                </div>
+                <div>
+                    <div
+                        class="w-16 h-16 bg-[var(--color-accent)]/10 mx-auto mb-4 flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-[var(--color-accent)]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-base md:text-lg text-[var(--color-primary)] mb-2"
+                    >
+                        Easy Customization
+                    </h3>
+                    <p class="text-sm text-gray-600">No coding required</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>
+
+<script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const templateCards = document.querySelectorAll(".template-card");
+
+    function filterTemplates(filter: string) {
+        // Update active button
+        filterButtons.forEach((btn) => {
+            const btnFilter = btn.getAttribute("data-filter");
+            if (btnFilter === filter) {
+                btn.classList.remove("bg-gray-200", "text-gray-700");
+                btn.classList.add("bg-[var(--color-accent)]", "text-white");
+            } else {
+                btn.classList.remove("bg-[var(--color-accent)]", "text-white");
+                btn.classList.add("bg-gray-200", "text-gray-700");
+            }
+        });
+
+        // Filter templates
+        templateCards.forEach((card) => {
+            const cardTrade = card.getAttribute("data-trade");
+            if (filter === "all" || cardTrade === filter) {
+                (card as HTMLElement).style.display = "block";
+            } else {
+                (card as HTMLElement).style.display = "none";
+            }
+        });
+    }
+
+    // Handle filter button clicks
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.getAttribute("data-filter");
+            if (filter) {
+                filterTemplates(filter);
+                // Update URL hash without scrolling
+                history.pushState(null, "", filter === "all" ? "/our-work" : `/our-work#${filter}`);
+            }
+        });
+    });
+
+    // Check for hash on page load and filter accordingly
+    window.addEventListener("DOMContentLoaded", () => {
+        const hash = window.location.hash.substring(1); // Remove the # symbol
+        if (hash) {
+            filterTemplates(hash);
+        }
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener("hashchange", () => {
+        const hash = window.location.hash.substring(1);
+        filterTemplates(hash || "all");
+    });
+</script>

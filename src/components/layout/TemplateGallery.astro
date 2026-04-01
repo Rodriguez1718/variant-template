@@ -1,0 +1,88 @@
+---
+import TradeCard from "../ui/TradeCard.astro";
+import Button from "../ui/Button.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    limit?: number;
+}
+
+const {
+    title = "Browse Templates by Trade",
+    subtitle = "Each template is designed specifically for your industry with conversion-focused layouts and mobile-first design",
+    limit,
+} = Astro.props;
+
+// Get all trades and templates
+const allTrades = await getCollection("trades");
+const allTemplates = await getCollection("templates");
+
+// Sort trades by order
+const sortedTrades = allTrades.sort((a, b) => a.data.order - b.data.order);
+
+// Count templates per trade
+const tradesWithCount = sortedTrades.map((trade) => {
+    const templateCount = allTemplates.filter(
+        (template) =>
+            template.data.trade.toLowerCase() === trade.data.slug.toLowerCase(),
+    ).length;
+
+    return {
+        name: trade.data.name,
+        slug: trade.data.slug,
+        image: trade.data.image,
+        templates: templateCount,
+    };
+});
+
+// Apply limit if specified
+const displayedTrades = limit
+    ? tradesWithCount.slice(0, limit)
+    : tradesWithCount;
+const hasMore = limit && tradesWithCount.length > limit;
+---
+
+<section id="templates" class="py-20 px-6 bg-[var(--color-background)]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class="heading-h2 font-heading font-bold text-[var(--color-primary)] mb-4"
+            >
+                {title}
+            </h2>
+            <p class="text-subtitle text-gray-600 mx-auto">
+                {subtitle}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                displayedTrades.map((trade) => (
+                    <TradeCard
+                        name={trade.name}
+                        slug={trade.slug}
+                        image={trade.image}
+                        templateCount={trade.templates}
+                    />
+                ))
+            }
+        </div>
+
+        {
+            hasMore && (
+                <div class="text-center mt-12">
+                    <Button
+                        href="/our-work"
+                        variant="primary"
+                        size="md"
+                        icon={false}
+                    >
+                        View All Templates
+                    </Button>
+                </div>
+            )
+        }
+    </div>
+</section>

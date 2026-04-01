@@ -1,22 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/layout/Hero.astro";
+import Hero2 from "../components/layout/Hero2.astro";
 ---
 
 <BaseLayout
     title="What We Do | Your Company"
     description="Learn about our professional services and expertise"
 >
-    <Hero
+    <Hero2
         title="What We Do"
-        subtitle="Comprehensive solutions for all your construction and trade needs"
-        backgroundImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop"
+        backgroundImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=1080&fit=crop&q=80"
+        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "WHAT WE DO" }]}
     />
 
     <section class="py-16 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="bg-white p-8 shadow-lg">
-                <h3 class="font-heading font-bold text-2xl mb-4 text-[#304678]">
+                <h3
+                    class="font-heading font-bold text-2xl mb-4 text-[var(--color-primary)]"
+                >
                     Professional Services
                 </h3>
                 <p class="text-gray-600">
@@ -25,7 +27,9 @@ import Hero from "../components/layout/Hero.astro";
                 </p>
             </div>
             <div class="bg-white p-8 shadow-lg">
-                <h3 class="font-heading font-bold text-2xl mb-4 text-[#304678]">
+                <h3
+                    class="font-heading font-bold text-2xl mb-4 text-[var(--color-primary)]"
+                >
                     Quality Assurance
                 </h3>
                 <p class="text-gray-600">
@@ -34,7 +38,9 @@ import Hero from "../components/layout/Hero.astro";
                 </p>
             </div>
             <div class="bg-white p-8 shadow-lg">
-                <h3 class="font-heading font-bold text-2xl mb-4 text-[#304678]">
+                <h3
+                    class="font-heading font-bold text-2xl mb-4 text-[var(--color-primary)]"
+                >
                     Customer Focused
                 </h3>
                 <p class="text-gray-600">
