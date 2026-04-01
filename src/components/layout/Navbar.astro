@@ -2,145 +2,124 @@
 // Navbar component
 ---
 
-<nav class="bg-white shadow-sm border-b">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo -->
-      <div class="flex items-center">
-        <a href="/" class="shrink-0 flex items-center gap-2">
-          <img
-            src="/images/logo.avif"
-            alt="BuildPro Logo"
-            class="w-10 h-10 object-contain"
-          />
-          <span class="text-xl font-bold text-gray-900">BuildPro</span>
-        </a>
-      </div>
-
-      <!-- Navigation Links -->
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-8">
-          <a
-            href="#"
-            class="text-gray-900 hover:text-orange-500 px-3 py-2 text-base font-medium flex items-center"
-          >
-            Home
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </a>
-          <a
-            href="#"
-            class="text-gray-700 hover:text-orange-500 px-3 py-2 text-base font-medium flex items-center"
-          >
-            Pages
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </a>
-          <a
-            href="#"
-            class="text-gray-700 hover:text-orange-500 px-3 py-2 text-base font-medium flex items-center"
-          >
-            Projects
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </a>
-          <a
-            href="#"
-            class="text-gray-700 hover:text-orange-500 px-3 py-2 text-base font-medium flex items-center"
-          >
-            Services
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </a>
-          <a
-            href="#"
-            class="text-gray-700 hover:text-orange-500 px-3 py-2 text-base font-medium flex items-center"
-          >
-            News
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </a>
-          <a
-            href="#"
-            class="text-gray-700 hover:text-orange-500 px-3 py-2 text-base font-medium flex items-center"
-          >
-            Shop
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="hidden lg:flex items-center">
-        <div
-          class="flex items-center bg-orange-500 text-white px-4 py-2 rounded-lg"
-        >
-          <div
-            class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3"
-          >
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-              ></path>
-            </svg>
-          </div>
-          <div class="text-left">
-            <div class="text-xs opacity-90">Call Anytime</div>
-            <div class="text-base font-semibold">+9912358400</div>
-          </div>
-        </div>
-        <button
-          class="ml-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 md:px-6 md:py-2 rounded-lg text-sm md:text-base font-medium transition-colors"
-        >
-          Get a Free Quote
-        </button>
-      </div>
-
-      <!-- Mobile menu button -->
-      <div class="md:hidden">
-        <button
-          type="button"
-          class="text-gray-700 hover:text-orange-500 focus:outline-none focus:text-orange-500"
-        >
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
+<nav class="sticky top-0 z-50 relative h-29 overflow-hidden">
+  <!-- Mobile Orange angled section -->
+  <div class="absolute inset-0 bg-orange-500 md:hidden">
+    <div class="absolute inset-y-0 right-0 w-32 bg-gray-700" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 2% 100%);"></div>
+  </div>
+  
+  <!-- Mobile white background for logo -->
+  <div class="absolute inset-y-0 left-0 w-64 bg-white md:hidden z-20" style="clip-path: polygon(0% 0%, 85% 0%, 90% 100%, 0% 100%);"></div>
+  
+  
+  <!-- Desktop Content -->
+  <div class="relative z-10 flex h-full max-w-7xl mx-auto px-8 hidden md:flex">
+    <!-- White background for logo area - extends to left edge but follows logo -->
+    <div class="absolute inset-y-0 right-0 bg-white z-20" style="left: calc(-50vw + 50%); width: calc(50vw - 50% + 320px); clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%);"></div>
+    
+    <!-- Logo Section - fixed width - DESKTOP ONLY -->
+    <div class="flex items-center h-full px-4 relative z-20 w-80">
+      <a href="/" class="flex items-center text-black">
+        <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+          <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
           </svg>
-        </button>
+        </div>
+        <span class="text-xl font-bold tracking-wider text-black">BUILDPRO</span>
+      </a>
+    </div>
+
+    <!-- Right content section - starts after white background with proper spacing - DESKTOP ONLY -->
+    <div class="flex flex-col h-full flex-1 ml-18">
+      <!-- Top row with contact info and quote button -->
+      <div class="flex items-center h-10 flex-1 relative">
+        <!-- Black background extending from logo area to right edge -->
+        <div class="absolute inset-y-0 bg-black hidden md:block" style="left: calc(-100% - 2rem); right: calc(-50vw + 50%); width: calc(50vw - 50% + 200%);"></div>
+        <!-- Orange background for quote button with skewed left edge - extends to viewport edge -->
+        <div class="absolute inset-y-0 bg-orange-500 hidden md:block" style="left: calc(100% - 12rem); right: calc(-50vw + 50%); width: calc(50vw - 50% + 12rem); clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 5% 100%);"></div>
+        
+        <div class="flex items-center gap-16 h-full flex-1 px-6 text-sm justify-start relative z-10">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+            </svg>
+            <p class="text-white">needhelp@company.com</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+            <p class="text-white">123 Brooklyn New Street, USA</p>
+          </div>
+        </div>
+        <div class="px-6 h-full flex items-center relative z-10">
+          <p class="text-white font-medium text-sm">Get a Free Quote</p>
+        </div>
+      </div>
+
+      <!-- Bottom row with navigation -->
+      <div class="hidden md:flex items-center justify-end space-x-8 text-white h-12 px-4 flex-1 relative">
+        <!-- Gray background extending from logo area to right edge -->
+        <div class="absolute inset-y-0 bg-gray-700 hidden md:block" style="left: calc(-100% - 2rem); right: calc(-50vw + 50%); width: calc(50vw - 50% + 200%);"></div>
+        
+        <div class="relative z-10 flex items-center justify-end space-x-8 w-full">
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            HOME
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            ABOUT
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            SERVICES
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            PROJECTS
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            PRICING
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            BLOG
+          </a>
+          <a href="#" class="text-sm font-medium hover:text-orange-400 transition-colors uppercase tracking-wide">
+            CONTACT
+          </a>
+          <div class="flex items-center bg-orange-500 text-white px-4 py-2 rounded-lg ml-8">
+            <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="text-xs opacity-90">Call Anytime</div>
+              <div class="text-sm font-semibold">+99123568000</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- Mobile Content -->
+  <div class="md:hidden flex items-center justify-between w-full h-full px-4 relative z-30">
+    <!-- Mobile Logo -->
+    <div class="flex items-center">
+      <a href="/" class="flex items-center text-black">
+        <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+          <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-wider text-black">BUILDPRO</span>
+      </a>
+    </div>
+    
+    <!-- Mobile menu button -->
+    <button type="button" class="text-white hover:text-orange-400 focus:outline-none">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
   </div>
 </nav>
