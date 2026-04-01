@@ -1,1 +1,116 @@
- 
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/layout/Hero.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<BaseLayout
+    title="Contact Us | Your Company"
+    description="Get in touch with our team"
+>
+    <Hero
+        title="Contact Us"
+        subtitle="We'd love to hear from you. Reach out today!"
+        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop"
+    />
+
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div>
+                <h2 class="font-heading font-bold text-3xl mb-8 text-[#304678]">
+                    Send us a Message
+                </h2>
+                <form class="space-y-6">
+                    <div>
+                        <label
+                            class="block font-heading font-bold mb-2 text-[#304678]"
+                            >Name</label
+                        >
+                        <input
+                            type="text"
+                            class="w-full px-4 py-3 border border-gray-300 bg-white"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label
+                            class="block font-heading font-bold mb-2 text-[#304678]"
+                            >Email</label
+                        >
+                        <input
+                            type="email"
+                            class="w-full px-4 py-3 border border-gray-300 bg-white"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label
+                            class="block font-heading font-bold mb-2 text-[#304678]"
+                            >Message</label
+                        >
+                        <textarea
+                            class="w-full px-4 py-3 border border-gray-300 bg-white h-32"
+                            required></textarea>
+                    </div>
+                    <Button variant="accent" size="lg">Send Message</Button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h2 class="font-heading font-bold text-3xl mb-8 text-[#304678]">
+                    Get in Touch
+                </h2>
+                <div class="space-y-8">
+                    <div>
+                        <h3
+                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                        >
+                            Phone
+                        </h3>
+                        <p class="text-gray-600">
+                            <a
+                                href="tel:+1234567890"
+                                class="hover:text-[#f59f0a]">(123) 456-7890</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h3
+                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                        >
+                            Email
+                        </h3>
+                        <p class="text-gray-600">
+                            <a
+                                href="mailto:info@company.com"
+                                class="hover:text-[#f59f0a]"
+                                >info@company.com</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h3
+                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                        >
+                            Address
+                        </h3>
+                        <p class="text-gray-600">
+                            123 Main Street<br />City, State 12345
+                        </p>
+                    </div>
+                    <div>
+                        <h3
+                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                        >
+                            Hours
+                        </h3>
+                        <p class="text-gray-600">
+                            Monday - Friday: 8am - 5pm<br />Saturday: 9am - 3pm<br
+                            />Sunday: Closed
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

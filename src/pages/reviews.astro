@@ -1,1 +1,38 @@
- 
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/layout/Hero.astro";
+---
+
+<BaseLayout
+    title="Reviews | Your Company"
+    description="See what our customers say about us"
+>
+    <Hero
+        title="Customer Reviews"
+        subtitle="Trusted by hundreds of satisfied clients"
+        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop"
+    />
+
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                [1, 2, 3, 4, 5, 6].map((i) => (
+                    <div class="bg-white p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <span class="text-[#f59f0a] text-xl">★</span>
+                            ))}
+                        </div>
+                        <p class="text-gray-600 mb-4 italic">
+                            "Excellent service and professional team. Highly
+                            recommended!"
+                        </p>
+                        <p class="font-heading font-bold text-[#304678]">
+                            Customer Name {i}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>
