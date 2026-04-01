@@ -1,39 +1,39 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Hero from "../../components/layout/Hero.astro";
+import Hero2 from "../../components/layout/Hero2.astro";
 
 const trades = {
     plumbing: {
         name: "Plumbing",
         description:
             "Professional plumbing services for residential and commercial properties",
-        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=1080&fit=crop&q=80",
     },
     electrical: {
         name: "Electrical",
         description:
             "Expert electrical installation, repair, and maintenance services",
-        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=1080&fit=crop&q=80",
     },
     hvac: {
         name: "HVAC",
         description: "Heating, ventilation, and air conditioning solutions",
-        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=1080&fit=crop&q=80",
     },
     carpentry: {
         name: "Carpentry",
         description: "Custom carpentry and woodworking services",
-        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=1080&fit=crop&q=80",
     },
     roofing: {
         name: "Roofing",
         description: "Professional roofing installation and repair",
-        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=1080&fit=crop&q=80",
     },
     masonry: {
         name: "Masonry",
         description: "Expert masonry and stonework services",
-        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=1080&fit=crop&q=80",
     },
 };
 
@@ -49,16 +49,22 @@ if (!trade) {
     title={`${trade.name} | Your Company`}
     description={trade.description}
 >
-    <Hero
+    <Hero2
         title={trade.name}
-        subtitle={trade.description}
         backgroundImage={trade.image}
+        breadcrumbs={[
+            { label: "HOME", href: "/" },
+            { label: "TRADES WE SERVE", href: "/trades-we-serve" },
+            { label: trade.name.toUpperCase() },
+        ]}
     />
 
     <section class="py-16 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="font-heading font-bold text-4xl mb-6 text-[#304678]">
+                <h2
+                    class="font-heading font-bold text-4xl mb-6 text-[var(--color-primary)]"
+                >
                     Our {trade.name} Services
                 </h2>
                 <p class="text-gray-600 mb-4 leading-relaxed">
@@ -73,25 +79,33 @@ if (!trade) {
                 </p>
                 <ul class="space-y-3">
                     <li class="flex items-start">
-                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-[var(--color-accent)] mr-3 font-bold"
+                            >✓</span
+                        >
                         <span class="text-gray-600"
                             >Licensed and insured professionals</span
                         >
                     </li>
                     <li class="flex items-start">
-                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-[var(--color-accent)] mr-3 font-bold"
+                            >✓</span
+                        >
                         <span class="text-gray-600"
                             >24/7 emergency services available</span
                         >
                     </li>
                     <li class="flex items-start">
-                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-[var(--color-accent)] mr-3 font-bold"
+                            >✓</span
+                        >
                         <span class="text-gray-600"
                             >Competitive pricing and free estimates</span
                         >
                     </li>
                     <li class="flex items-start">
-                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-[var(--color-accent)] mr-3 font-bold"
+                            >✓</span
+                        >
                         <span class="text-gray-600"
                             >Satisfaction guaranteed</span
                         >

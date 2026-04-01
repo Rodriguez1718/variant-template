@@ -1,1 +1,88 @@
- 
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    backgroundImage?: string;
+    pretitle?: string;
+    title: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaLink?: string;
+}
+
+const {
+    backgroundImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&q=80",
+    pretitle = "BUILD YOUR INDUSTRY WITH US",
+    title = "INDUSTRY",
+    subtitle = "Providing Reliable Factory Services",
+    ctaText = "EXPLORE NOW",
+    ctaLink = "/contact",
+} = Astro.props;
+---
+
+<section
+    class="relative w-full h-screen flex items-center justify-center overflow-hidden"
+    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+>
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full px-6 text-center">
+        <!-- Pretitle -->
+        {
+            pretitle && (
+                <p class="text-xl md:text-4xl font-heading font-bold uppercase tracking-[0.3em] text-white mb-6 opacity-90">
+                    {pretitle}
+                </p>
+            )
+        }
+
+        <!-- Main Title -->
+        <h1
+            class="text-5xl md:text-5xl lg:text-5xl xl:text-5xl font-heading font-bold text-white mb-6 tracking-wider"
+        >
+            {title}
+        </h1>
+
+        <!-- Subtitle -->
+        {
+            subtitle && (
+                <p class="text-xl md:text-4xl lg:text-4xl text-white mb-12 font-light tracking-wide">
+                    {subtitle}
+                </p>
+            )
+        }
+
+        <!-- CTA Button -->
+        <Button variant="accent" size="md" href={ctaLink} icon={false}>
+            {ctaText}
+        </Button>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div
+        class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/30 to-transparent"
+    >
+    </div>
+</section>
+
+<style>
+    /* Ensure sharp edges for button */
+    a {
+        border-radius: 0 !important;
+    }
+
+    /* Pulsing animation for play button */
+    @keyframes ping {
+        75%,
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    .animate-ping {
+        animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+</style>

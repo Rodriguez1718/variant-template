@@ -1,107 +1,304 @@
 ---
+interface Props {
+    companyName?: string;
+    tagline?: string;
+    phone?: string;
+    email?: string;
+    address?: string;
+    hours?: string;
+}
 
+const {
+    companyName = "Your Company",
+    tagline = "Professional services for all your construction and trade needs since 1982.",
+    phone = "+9901253789",
+    email = "hello@yourcompany.com",
+    address = "123 Lake side street, new york",
+    hours = "8:00am to 9:00pm (Sun: Closed)",
+} = Astro.props;
+
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-[#304678] text-white py-12">
-    <div class="max-w-6xl mx-auto px-6">
-        <!-- Footer Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<footer class="bg-[var(--color-text)] text-white">
+    <!-- Main Footer Content -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <!-- Company Info -->
             <div>
-                <h3 class="font-heading font-bold text-lg mb-4">About Us</h3>
-                <p class="text-gray-300 text-sm leading-relaxed">
-                    Professional services for all your construction and trade
-                    needs since 1982.
+                <div class="flex items-center gap-3 mb-6">
+                    <img
+                        src="/images/logo.avif"
+                        alt={companyName}
+                        class="w-10 h-10 object-contain"
+                    />
+                    <h3 class="text-xl font-heading font-bold">
+                        {companyName}
+                    </h3>
+                </div>
+                <p class="text-gray-400 text-xl leading-relaxed mb-8">
+                    {tagline}
                 </p>
+
+                <!-- CTA Button -->
+                <div
+                    class="flex items-center gap-3 bg-accent px-4 py-3 hover:bg-[#d97706] transition-colors cursor-pointer"
+                >
+                    <svg
+                        class="w-5 h-5 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+                        ></path>
+                    </svg>
+                    <div>
+                        <p
+                            class="text-xs text-white/80 uppercase tracking-wide"
+                        >
+                            Get a Free Quote
+                        </p>
+                        <p class="text-xl font-heading font-bold text-white">
+                            {phone}
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Quick Links -->
+            <!-- Links -->
             <div>
-                <h3 class="font-heading font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2">
-                    <li>
-                        <a
-                            href="/"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Home</a>
-                    </li>
-                    <li>
-                        <a
-                            href="/what-we-do"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >What We Do</a>
-                    </li>
-                    <li>
-                        <a
-                            href="/our-work"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Our Work</a>
-                    </li>
+                <h3 class="font-heading font-bold text-xl mb-6">Links</h3>
+                <ul class="space-y-3">
                     <li>
                         <a
                             href="/about"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >About</a>
+                            class="text-gray-400 hover:text-accent transition-colors text-lg"
+                            >About</a
+                        >
                     </li>
-                </ul>
-            </div>
-
-            <!-- Services -->
-            <div>
-                <h3 class="font-heading font-bold text-lg mb-4">Services</h3>
-                <ul class="space-y-2">
                     <li>
                         <a
-                            href="/trades-we-serve"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Trades We Serve</a>
+                            href="/templates"
+                            class="text-gray-400 hover:text-accent transition-colors text-lg"
+                            >Our Templates</a
+                        >
                     </li>
                     <li>
                         <a
                             href="/reviews"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Reviews</a>
+                            class="text-gray-400 hover:text-accent transition-colors text-lg"
+                            >Latest News</a
+                        >
                     </li>
                     <li>
                         <a
-                            href="/contact"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Contact</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Legal -->
-            <div>
-                <h3 class="font-heading font-bold text-lg mb-4">Legal</h3>
-                <ul class="space-y-2">
-                    <li>
-                        <a
-                            href="/privacy"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Privacy Policy</a>
+                            href="/trades-we-serve"
+                            class="text-gray-400 hover:text-accent transition-colors text-lg"
+                            >Our Contractors</a
+                        >
                     </li>
                     <li>
                         <a
                             href="/terms"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Terms of Service</a>
+                            class="text-gray-400 hover:text-accent transition-colors text-lg"
+                            >Terms of Use</a
+                        >
                     </li>
                     <li>
                         <a
-                            href="/sitemap"
-                            class="text-gray-300 hover:text-[#f59f0a] transition-colors"
-                            >Sitemap</a>
+                            href="/contact"
+                            class="text-gray-400 hover:text-accent transition-colors text-lg"
+                            >Contact Us</a
+                        >
                     </li>
                 </ul>
             </div>
-        </div>
 
-        <!-- Divider -->
-        <div class="border-t border-gray-600 pt-8">
-            <!-- Copyright -->
-            <div class="text-center text-gray-400 text-sm">
-                <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+            <!-- Latest News -->
+            <div>
+                <h3 class="font-heading font-bold text-xl mb-6">Latest News</h3>
+                <div class="space-y-4">
+                    <a href="/blog/build-tools" class="flex gap-3 group">
+                        <img
+                            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=80&h=80&fit=crop"
+                            alt="Blog post"
+                            class="w-16 h-16 object-cover"
+                        />
+                        <div>
+                            <p class="text-xs text-accent uppercase mb-1">
+                                May 14, 2023
+                            </p>
+                            <p
+                                class="text-lg text-gray-300 group-hover:text-accent transition-colors"
+                            >
+                                How to Build your Mechanical Tools
+                            </p>
+                        </div>
+                    </a>
+                    <a href="/blog/competition" class="flex gap-3 group">
+                        <img
+                            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=80&h=80&fit=crop"
+                            alt="Blog post"
+                            class="w-16 h-16 object-cover"
+                        />
+                        <div>
+                            <p class="text-xs text-accent uppercase mb-1">
+                                May 14, 2023
+                            </p>
+                            <p
+                                class="text-lg text-gray-300 group-hover:text-accent transition-colors"
+                            >
+                                Don't get framed by the competitions
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h3 class="font-heading font-bold text-xl mb-6">Contact</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 mt-1">
+                            <svg
+                                class="w-5 h-5 text-accent"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-lg font-heading font-bold mb-1">
+                                Email
+                            </p>
+                            <a
+                                href={`mailto:${email}`}
+                                class="text-gray-400 hover:text-accent transition-colors text-lg"
+                                >{email}</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 mt-1">
+                            <svg
+                                class="w-5 h-5 text-accent"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-lg font-heading font-bold mb-1">
+                                Address
+                            </p>
+                            <p class="text-gray-400 text-xl">{address}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 mt-1">
+                            <svg
+                                class="w-5 h-5 text-accent"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-lg font-heading font-bold mb-1">
+                                Mon - Sat
+                            </p>
+                            <p class="text-gray-400 text-xl">{hours}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="bg-[#000000] py-6">
+        <div
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+            <p class="text-gray-500 text-lg">
+                © All Copyright {currentYear} by {companyName}
+            </p>
+
+            <!-- Social Links -->
+            <div class="flex items-center gap-4">
+                <a
+                    href="#"
+                    class="w-8 h-8 bg-secondary/30 hover:bg-accent flex items-center justify-center transition-colors"
+                    aria-label="Twitter"
+                >
+                    <svg
+                        class="w-4 h-4 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                        ></path>
+                    </svg>
+                </a>
+                <a
+                    href="#"
+                    class="w-8 h-8 bg-secondary/30 hover:bg-accent flex items-center justify-center transition-colors"
+                    aria-label="Facebook"
+                >
+                    <svg
+                        class="w-4 h-4 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                        ></path>
+                    </svg>
+                </a>
+                <a
+                    href="#"
+                    class="w-8 h-8 bg-secondary/30 hover:bg-accent flex items-center justify-center transition-colors"
+                    aria-label="Pinterest"
+                >
+                    <svg
+                        class="w-4 h-4 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12c0 4.26 2.67 7.9 6.43 9.34-.09-.79-.17-2.01.04-2.87.19-.78 1.23-5.21 1.23-5.21s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.57 2.25-.87 3.5-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.25-4.37-4.25-2.98 0-4.73 2.23-4.73 4.54 0 .9.35 1.86.78 2.38.09.1.1.19.07.3-.08.31-.25 1.04-.29 1.18-.05.19-.17.23-.39.14-1.39-.65-2.26-2.68-2.26-4.31 0-3.51 2.55-6.73 7.36-6.73 3.86 0 6.86 2.75 6.86 6.43 0 3.83-2.42 6.92-5.77 6.92-1.13 0-2.19-.59-2.55-1.28l-.69 2.64c-.25.97-.93 2.19-1.39 2.93C9.58 21.85 10.77 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"
+                        ></path>
+                    </svg>
+                </a>
+                <a
+                    href="#"
+                    class="w-8 h-8 bg-secondary/30 hover:bg-accent flex items-center justify-center transition-colors"
+                    aria-label="Instagram"
+                >
+                    <svg
+                        class="w-4 h-4 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                        ></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </div>

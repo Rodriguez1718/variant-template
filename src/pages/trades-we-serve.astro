@@ -1,16 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/layout/Hero.astro";
+import Hero2 from "../components/layout/Hero2.astro";
 ---
 
 <BaseLayout
     title="Trades We Serve | Your Company"
     description="Explore the different trades and services we offer"
 >
-    <Hero
+    <Hero2
         title="Trades We Serve"
-        subtitle="Expert services across multiple industries"
-        backgroundImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop"
+        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80"
+        breadcrumbs={[
+            { label: "HOME", href: "/" },
+            { label: "TRADES WE SERVE" },
+        ]}
     />
 
     <section class="py-16 px-6 max-w-6xl mx-auto">
@@ -28,7 +31,7 @@ import Hero from "../components/layout/Hero.astro";
                         href={`/trades-we-serve/${trade.toLowerCase().replace(/\s+/g, "-")}`}
                         class="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
                     >
-                        <h3 class="font-heading font-bold text-2xl mb-4 text-[#304678]">
+                        <h3 class="font-heading font-bold text-2xl mb-4 text-[var(--color-primary)]">
                             {trade}
                         </h3>
                         <p class="text-gray-600">

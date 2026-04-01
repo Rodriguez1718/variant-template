@@ -1,0 +1,79 @@
+---
+interface Props {
+    title?: string;
+    subtitle?: string;
+    reviews?: Array<{
+        name: string;
+        business: string;
+        review: string;
+        rating: number;
+    }>;
+}
+
+const {
+    title = "Trusted by Contractors Nationwide",
+    subtitle = "See what business owners are saying",
+    reviews = [
+        {
+            name: "Mike Johnson",
+            business: "Johnson HVAC Services",
+            review: "This template paid for itself in the first week. Got 3 new customers from my website alone!",
+            rating: 5,
+        },
+        {
+            name: "Sarah Martinez",
+            business: "Martinez Plumbing",
+            review: "Easy to set up, looks professional, and my phone has been ringing non-stop. Highly recommend!",
+            rating: 5,
+        },
+        {
+            name: "Tom Williams",
+            business: "Williams Electrical",
+            review: "Finally a website that actually works for my business. The mobile design is perfect for my customers.",
+            rating: 5,
+        },
+    ],
+} = Astro.props;
+---
+
+<section class="py-20 px-6 bg-[var(--color-background)]">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-heading font-bold text-[var(--color-primary)] mb-4"
+            >
+                {title}
+            </h2>
+            <p class="text-lg text-gray-600">
+                {subtitle}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {
+                reviews.map((review) => (
+                    <div class="bg-white p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            {[...Array(review.rating)].map(() => (
+                                <span class="text-[var(--color-accent)] text-xl">
+                                    ★
+                                </span>
+                            ))}
+                        </div>
+                        <p class="text-gray-600 mb-6 italic">
+                            "{review.review}"
+                        </p>
+                        <div>
+                            <p class="font-heading font-bold text-[var(--color-primary)]">
+                                {review.name}
+                            </p>
+                            <p class="text-base text-gray-500">
+                                {review.business}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

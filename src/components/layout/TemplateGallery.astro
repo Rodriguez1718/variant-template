@@ -1,0 +1,99 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    trades?: Array<{ name: string; image: string; templates: number }>;
+}
+
+const {
+    title = "Browse Templates by Trade",
+    subtitle = "Each template is designed specifically for your industry with conversion-focused layouts and mobile-first design",
+    trades = [
+        {
+            name: "HVAC",
+            image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=600&fit=crop",
+            templates: 12,
+        },
+        {
+            name: "Plumbing",
+            image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&h=600&fit=crop",
+            templates: 10,
+        },
+        {
+            name: "Electrical",
+            image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop",
+            templates: 8,
+        },
+        {
+            name: "Roofing",
+            image: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=800&h=600&fit=crop",
+            templates: 9,
+        },
+        {
+            name: "Landscaping",
+            image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&h=600&fit=crop",
+            templates: 7,
+        },
+        {
+            name: "General Contractor",
+            image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop",
+            templates: 15,
+        },
+    ],
+} = Astro.props;
+---
+
+<section id="templates" class="py-20 px-6 bg-[var(--color-background)]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-heading font-bold text-[var(--color-primary)] mb-4"
+            >
+                {title}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                {subtitle}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                trades.map((trade) => (
+                    <a
+                        href={`/templates/${trade.name.toLowerCase().replace(/\s+/g, "-")}`}
+                        class="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300"
+                    >
+                        <div class="relative h-64 overflow-hidden">
+                            <img
+                                src={trade.image}
+                                alt={trade.name}
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <h3 class="text-2xl font-heading font-bold text-white mb-2">
+                                    {trade.name}
+                                </h3>
+                                <p class="text-base text-gray-200">
+                                    {trade.templates} Templates Available
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-white">
+                            <Button
+                                variant="accent"
+                                size="sm"
+                                icon={false}
+                                class="w-full text-center"
+                            >
+                                View Templates
+                            </Button>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
