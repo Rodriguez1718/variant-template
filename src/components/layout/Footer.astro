@@ -32,11 +32,13 @@ const currentYear = new Date().getFullYear();
                         alt={companyName}
                         class="w-10 h-10 object-contain"
                     />
-                    <h3 class="text-xl font-heading font-bold">
+                    <h3 class="text-xl md:text-2xl font-heading font-bold">
                         {companyName}
                     </h3>
                 </div>
-                <p class="text-gray-400 text-xl leading-relaxed mb-8">
+                <p
+                    class="text-gray-400 text-base md:text-xl leading-relaxed mb-8"
+                >
                     {tagline}
                 </p>
 
@@ -59,7 +61,9 @@ const currentYear = new Date().getFullYear();
                         >
                             Get a Free Quote
                         </p>
-                        <p class="text-xl font-heading font-bold text-white">
+                        <p
+                            class="text-base md:text-xl font-heading font-bold text-white"
+                        >
                             {phone}
                         </p>
                     </div>
@@ -68,7 +72,9 @@ const currentYear = new Date().getFullYear();
 
             <!-- Links -->
             <div>
-                <h3 class="font-heading font-bold text-xl mb-6">Links</h3>
+                <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
+                    Links
+                </h3>
                 <ul class="space-y-3">
                     <li>
                         <a
@@ -117,7 +123,9 @@ const currentYear = new Date().getFullYear();
 
             <!-- Latest News -->
             <div>
-                <h3 class="font-heading font-bold text-xl mb-6">Latest News</h3>
+                <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
+                    Latest News
+                </h3>
                 <div class="space-y-4">
                     <a href="/blog/build-tools" class="flex gap-3 group">
                         <img
@@ -158,7 +166,9 @@ const currentYear = new Date().getFullYear();
 
             <!-- Contact -->
             <div>
-                <h3 class="font-heading font-bold text-xl mb-6">Contact</h3>
+                <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
+                    Contact
+                </h3>
                 <div class="space-y-4">
                     <div class="flex items-start gap-3">
                         <div class="w-5 h-5 mt-1">
@@ -200,7 +210,9 @@ const currentYear = new Date().getFullYear();
                             <p class="text-lg font-heading font-bold mb-1">
                                 Address
                             </p>
-                            <p class="text-gray-400 text-xl">{address}</p>
+                            <p class="text-gray-400 text-base md:text-xl">
+                                {address}
+                            </p>
                         </div>
                     </div>
 
@@ -220,7 +232,9 @@ const currentYear = new Date().getFullYear();
                             <p class="text-lg font-heading font-bold mb-1">
                                 Mon - Sat
                             </p>
-                            <p class="text-gray-400 text-xl">{hours}</p>
+                            <p class="text-gray-400 text-base md:text-xl">
+                                {hours}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -233,7 +247,7 @@ const currentYear = new Date().getFullYear();
         <div
             class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4"
         >
-            <p class="text-gray-500 text-lg">
+            <p class="text-gray-500 text-base md:text-xl">
                 © All Copyright {currentYear} by {companyName}
             </p>
 

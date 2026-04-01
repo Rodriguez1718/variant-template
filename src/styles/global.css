@@ -38,6 +38,60 @@
   font-size: 5.652rem;
 }
 
+/* Responsive Typography Utilities */
+/* H1 - Always 5xl with responsive scaling */
+.heading-h1 {
+  font-size: 2.827rem;
+  /* 3xl on mobile */
+}
+
+@media (min-width: 768px) {
+  .heading-h1 {
+    font-size: 3.997rem;
+    /* 4xl on tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-h1 {
+    font-size: 5.652rem;
+    /* 5xl on desktop */
+  }
+}
+
+/* H2 - Max 4xl with responsive scaling */
+.heading-h2 {
+  font-size: 1.999rem;
+  /* 2xl on mobile */
+}
+
+@media (min-width: 768px) {
+  .heading-h2 {
+    font-size: 2.827rem;
+    /* 3xl on tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-h2 {
+    font-size: 3.997rem;
+    /* 4xl on desktop */
+  }
+}
+
+/* Subtitle - Max xl with responsive scaling */
+.text-subtitle {
+  font-size: 1rem;
+  /* base on mobile */
+}
+
+@media (min-width: 768px) {
+  .text-subtitle {
+    font-size: 1.414rem;
+    /* xl on tablet and up */
+  }
+}
+
 .font-heading {
   font-family: 'Poppins', sans-serif;
 }
