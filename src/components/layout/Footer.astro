@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 interface Props {
     companyName?: string;
     tagline?: string;
@@ -18,6 +20,51 @@ const {
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+
+// Get latest trades and templates
+const allTrades = await getCollection("trades");
+const allTemplates = await getCollection("templates");
+
+// Sort trades by order (descending) and templates by most recent
+const sortedTrades = allTrades.sort((a, b) => b.data.order - a.data.order);
+const sortedTemplates = [...allTemplates].reverse(); // Most recent last, so reverse
+
+// Combine all updates with timestamps
+const allUpdates = [
+    ...sortedTrades.map((trade) => ({
+        type: "trade",
+        title: `New Trade Added: ${trade.data.name}`,
+        image: trade.data.image,
+        link: `/trades-we-serve/${trade.data.slug}`,
+    })),
+    ...sortedTemplates.map((template) => ({
+        type: "template",
+        title: `New Template: ${template.data.title}`,
+        image: template.data.thumbnail,
+        link: `/our-work`,
+    })),
+];
+
+// Get the 2 most recent updates, prioritizing templates
+const templateUpdates = allUpdates
+    .filter((u) => u.type === "template")
+    .slice(0, 2);
+const tradeUpdates = allUpdates.filter((u) => u.type === "trade").slice(0, 2);
+
+// Combine: show at least 1 template if available, then fill with trades
+const updates = [];
+if (templateUpdates.length > 0) {
+    updates.push(templateUpdates[0]);
+}
+if (tradeUpdates.length > 0 && updates.length < 2) {
+    updates.push(tradeUpdates[0]);
+}
+if (templateUpdates.length > 1 && updates.length < 2) {
+    updates.push(templateUpdates[1]);
+}
+if (tradeUpdates.length > 1 && updates.length < 2) {
+    updates.push(tradeUpdates[1]);
+}
 ---
 
 <footer class="bg-[var(--color-text)] text-white">
@@ -85,7 +132,7 @@ const currentYear = new Date().getFullYear();
                     </li>
                     <li>
                         <a
-                            href="/templates"
+                            href="/our-work"
                             class="text-gray-400 hover:text-accent transition-colors text-lg"
                             >Our Templates</a
                         >
@@ -121,46 +168,33 @@ const currentYear = new Date().getFullYear();
                 </ul>
             </div>
 
-            <!-- Latest News -->
+            <!-- Latest Updates -->
             <div>
                 <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
-                    Latest News
+                    Latest Updates
                 </h3>
                 <div class="space-y-4">
-                    <a href="/blog/build-tools" class="flex gap-3 group">
-                        <img
-                            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=80&h=80&fit=crop"
-                            alt="Blog post"
-                            class="w-16 h-16 object-cover"
-                        />
-                        <div>
-                            <p class="text-xs text-accent uppercase mb-1">
-                                May 14, 2023
-                            </p>
-                            <p
-                                class="text-lg text-gray-300 group-hover:text-accent transition-colors"
-                            >
-                                How to Build your Mechanical Tools
-                            </p>
-                        </div>
-                    </a>
-                    <a href="/blog/competition" class="flex gap-3 group">
-                        <img
-                            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=80&h=80&fit=crop"
-                            alt="Blog post"
-                            class="w-16 h-16 object-cover"
-                        />
-                        <div>
-                            <p class="text-xs text-accent uppercase mb-1">
-                                May 14, 2023
-                            </p>
-                            <p
-                                class="text-lg text-gray-300 group-hover:text-accent transition-colors"
-                            >
-                                Don't get framed by the competitions
-                            </p>
-                        </div>
-                    </a>
+                    {
+                        updates.map((update) => (
+                            <a href={update.link} class="flex gap-3 group">
+                                <img
+                                    src={update.image}
+                                    alt={update.title}
+                                    class="w-16 h-16 object-cover"
+                                />
+                                <div>
+                                    <p class="text-xs text-accent uppercase mb-1">
+                                        {update.type === "trade"
+                                            ? "New Trade"
+                                            : "New Template"}
+                                    </p>
+                                    <p class="text-base text-gray-300 group-hover:text-accent transition-colors line-clamp-2">
+                                        {update.title}
+                                    </p>
+                                </div>
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
 
