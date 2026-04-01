@@ -25,7 +25,12 @@ const currentYear = new Date().getFullYear();
 const allTrades = await getCollection("trades");
 const allTemplates = await getCollection("templates");
 
-// Sort trades by order (descending) and templates by most recent
+// Sort trades by order for services list (ascending)
+const sortedTradesForServices = allTrades.sort(
+    (a, b) => a.data.order - b.data.order,
+);
+
+// Sort trades by order (descending) for updates and templates by most recent
 const sortedTrades = allTrades.sort((a, b) => b.data.order - a.data.order);
 const sortedTemplates = [...allTemplates].reverse(); // Most recent last, so reverse
 
@@ -67,25 +72,23 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
 }
 ---
 
-<footer class="bg-[var(--color-text)] text-white">
+<footer class="bg-text text-white">
     <!-- Main Footer Content -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
             <!-- Company Info -->
-            <div>
-                <div class="flex items-center gap-3 mb-6">
+            <div class="lg:col-span-3">
+                <div class="flex items-center gap-3 mb-4">
                     <img
                         src="/images/logo.avif"
                         alt={companyName}
                         class="w-10 h-10 object-contain"
                     />
-                    <h3 class="text-xl md:text-2xl font-heading font-bold">
+                    <h3 class="text-xl font-heading font-bold">
                         {companyName}
                     </h3>
                 </div>
-                <p
-                    class="text-gray-400 text-base md:text-xl leading-relaxed mb-8"
-                >
+                <p class="text-gray-400 text-base leading-relaxed mb-6">
                     {tagline}
                 </p>
 
@@ -108,9 +111,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                         >
                             Get a Free Quote
                         </p>
-                        <p
-                            class="text-base md:text-xl font-heading font-bold text-white"
-                        >
+                        <p class="text-base font-heading font-bold text-white">
                             {phone}
                         </p>
                     </div>
@@ -118,62 +119,72 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
             </div>
 
             <!-- Links -->
-            <div>
-                <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
-                    Links
-                </h3>
-                <ul class="space-y-3">
+            <div class="lg:col-span-2">
+                <h3 class="font-heading font-bold text-lg mb-4">Links</h3>
+                <ul class="space-y-2">
                     <li>
                         <a
-                            href="/about"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >About</a
+                            href="/reviews"
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Reviews</a
                         >
                     </li>
                     <li>
                         <a
                             href="/our-work"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Our Templates</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/reviews"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Latest News</a
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Our Work</a
                         >
                     </li>
                     <li>
                         <a
                             href="/trades-we-serve"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Our Contractors</a
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Trades We Serve</a
                         >
                     </li>
                     <li>
                         <a
-                            href="/terms"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Terms of Use</a
+                            href="/what-we-do"
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >What We Do</a
                         >
                     </li>
                     <li>
                         <a
                             href="/contact"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Contact Us</a
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Contact</a
                         >
                     </li>
                 </ul>
             </div>
 
+            <!-- Services (Dynamic) -->
+            <div class="lg:col-span-2">
+                <h3 class="font-heading font-bold text-lg mb-4">Services</h3>
+                <ul class="space-y-2">
+                    {
+                        sortedTradesForServices.map((trade) => (
+                            <li>
+                                <a
+                                    href={`/trades-we-serve/${trade.data.slug}`}
+                                    class="text-gray-400 hover:text-accent transition-colors text-base"
+                                >
+                                    {trade.data.name}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
             <!-- Latest Updates -->
-            <div>
-                <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
+            <div class="lg:col-span-3">
+                <h3 class="font-heading font-bold text-lg mb-4">
                     Latest Updates
                 </h3>
-                <div class="space-y-4">
+                <div class="space-y-3">
                     {
                         updates.map((update) => (
                             <a href={update.link} class="flex gap-3 group">
@@ -199,77 +210,52 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
             </div>
 
             <!-- Contact -->
-            <div>
-                <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">
-                    Contact
-                </h3>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-3">
-                        <div class="w-5 h-5 mt-1">
-                            <svg
-                                class="w-5 h-5 text-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-lg font-heading font-bold mb-1">
-                                Email
-                            </p>
-                            <a
-                                href={`mailto:${email}`}
-                                class="text-gray-400 hover:text-accent transition-colors text-lg"
-                                >{email}</a
-                            >
-                        </div>
+            <div class="lg:col-span-2">
+                <h3 class="font-heading font-bold text-lg mb-4">Contact</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-2">
+                        <svg
+                            class="w-5 h-5 text-accent mt-0.5 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                            ></path>
+                        </svg>
+                        <a
+                            href={`mailto:${email}`}
+                            class="text-gray-400 hover:text-accent transition-colors text-base break-words"
+                            >{email}</a
+                        >
                     </div>
 
-                    <div class="flex items-start gap-3">
-                        <div class="w-5 h-5 mt-1">
-                            <svg
-                                class="w-5 h-5 text-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-lg font-heading font-bold mb-1">
-                                Address
-                            </p>
-                            <p class="text-gray-400 text-base md:text-xl">
-                                {address}
-                            </p>
-                        </div>
+                    <div class="flex items-start gap-2">
+                        <svg
+                            class="w-5 h-5 text-accent mt-0.5 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                            ></path>
+                        </svg>
+                        <p class="text-gray-400 text-base break-words">
+                            {address}
+                        </p>
                     </div>
 
-                    <div class="flex items-start gap-3">
-                        <div class="w-5 h-5 mt-1">
-                            <svg
-                                class="w-5 h-5 text-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-lg font-heading font-bold mb-1">
-                                Mon - Sat
-                            </p>
-                            <p class="text-gray-400 text-base md:text-xl">
-                                {hours}
-                            </p>
-                        </div>
+                    <div class="flex items-start gap-2">
+                        <svg
+                            class="w-5 h-5 text-accent mt-0.5 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                            ></path>
+                        </svg>
+                        <p class="text-gray-400 text-base">{hours}</p>
                     </div>
                 </div>
             </div>
@@ -277,16 +263,16 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
     </div>
 
     <!-- Bottom Bar -->
-    <div class="bg-[#000000] py-6">
+    <div class="bg-[#000000] py-4">
         <div
-            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4"
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3"
         >
-            <p class="text-gray-500 text-base md:text-xl">
+            <p class="text-gray-500 text-sm text-center md:text-left">
                 © All Copyright {currentYear} by {companyName}
             </p>
 
             <!-- Social Links -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <a
                     href="#"
                     class="w-8 h-8 bg-secondary/30 hover:bg-accent flex items-center justify-center transition-colors"
