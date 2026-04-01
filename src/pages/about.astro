@@ -1,1 +1,44 @@
- 
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/layout/Hero.astro";
+---
+
+<BaseLayout
+    title="About Us | Your Company"
+    description="Learn about our company history and mission"
+>
+    <Hero
+        title="About Our Company"
+        subtitle="Trusted professionals since 1982"
+        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop"
+    />
+
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="font-heading font-bold text-4xl mb-6 text-[#304678]">
+                    Our Story
+                </h2>
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    Founded in 1982, we've been serving our community with
+                    professional and reliable services for over four decades.
+                </p>
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    Our team of experienced professionals is dedicated to
+                    delivering exceptional results on every project, no matter
+                    the size or complexity.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    We believe in building long-term relationships with our
+                    clients based on trust, quality, and outstanding customer
+                    service.
+                </p>
+            </div>
+            <div
+                class="bg-[#304678] h-96 flex items-center justify-center text-white"
+            >
+                <p class="text-center">Company Image</p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

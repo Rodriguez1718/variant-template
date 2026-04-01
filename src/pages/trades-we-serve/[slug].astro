@@ -1,1 +1,106 @@
- 
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/layout/Hero.astro";
+
+const trades = {
+    plumbing: {
+        name: "Plumbing",
+        description:
+            "Professional plumbing services for residential and commercial properties",
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=600&fit=crop",
+    },
+    electrical: {
+        name: "Electrical",
+        description:
+            "Expert electrical installation, repair, and maintenance services",
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop",
+    },
+    hvac: {
+        name: "HVAC",
+        description: "Heating, ventilation, and air conditioning solutions",
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=600&fit=crop",
+    },
+    carpentry: {
+        name: "Carpentry",
+        description: "Custom carpentry and woodworking services",
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop",
+    },
+    roofing: {
+        name: "Roofing",
+        description: "Professional roofing installation and repair",
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop",
+    },
+    masonry: {
+        name: "Masonry",
+        description: "Expert masonry and stonework services",
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=600&fit=crop",
+    },
+};
+
+const { slug } = Astro.params;
+const trade = trades[slug as keyof typeof trades];
+
+if (!trade) {
+    return Astro.redirect("/trades-we-serve");
+}
+---
+
+<BaseLayout
+    title={`${trade.name} | Your Company`}
+    description={trade.description}
+>
+    <Hero
+        title={trade.name}
+        subtitle={trade.description}
+        backgroundImage={trade.image}
+    />
+
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="font-heading font-bold text-4xl mb-6 text-[#304678]">
+                    Our {trade.name} Services
+                </h2>
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    We provide comprehensive {trade.name.toLowerCase()} services tailored
+                    to meet your specific needs. Our experienced team is equipped
+                    with the latest tools and techniques to ensure quality workmanship.
+                </p>
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    Whether you need emergency repairs, routine maintenance, or
+                    new installations, we're here to help. We pride ourselves on
+                    delivering reliable, professional service every time.
+                </p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-gray-600"
+                            >Licensed and insured professionals</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-gray-600"
+                            >24/7 emergency services available</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-gray-600"
+                            >Competitive pricing and free estimates</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[#f59f0a] mr-3 font-bold">✓</span>
+                        <span class="text-gray-600"
+                            >Satisfaction guaranteed</span
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-gray-300 h-96 flex items-center justify-center">
+                <p class="text-gray-600">{trade.name} Image</p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
