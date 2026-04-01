@@ -1,16 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/layout/Hero.astro";
+import Hero2 from "../components/layout/Hero2.astro";
 ---
 
 <BaseLayout
     title="Our Work | Your Company"
     description="View our portfolio of completed projects"
 >
-    <Hero
+    <Hero2
         title="Our Work"
-        subtitle="Showcasing our best projects and achievements"
-        backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop"
+        backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=1080&fit=crop&q=80"
+        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "OUR WORK" }]}
     />
 
     <section class="py-16 px-6 max-w-6xl mx-auto">
@@ -22,7 +22,7 @@ import Hero from "../components/layout/Hero.astro";
                             <p class="text-gray-600">Project {i}</p>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-heading font-bold text-xl mb-2 text-[#304678]">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-[var(--color-primary)]">
                                 Project Title {i}
                             </h3>
                             <p class="text-gray-600 text-sm">

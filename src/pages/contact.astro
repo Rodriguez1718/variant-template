@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/layout/Hero.astro";
+import Hero2 from "../components/layout/Hero2.astro";
 import Button from "../components/ui/Button.astro";
 ---
 
@@ -8,23 +8,25 @@ import Button from "../components/ui/Button.astro";
     title="Contact Us | Your Company"
     description="Get in touch with our team"
 >
-    <Hero
+    <Hero2
         title="Contact Us"
-        subtitle="We'd love to hear from you. Reach out today!"
-        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop"
+        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80"
+        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "CONTACT US" }]}
     />
 
     <section class="py-16 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Contact Form -->
             <div>
-                <h2 class="font-heading font-bold text-3xl mb-8 text-[#304678]">
+                <h2
+                    class="font-heading font-bold text-3xl mb-8 text-[var(--color-primary)]"
+                >
                     Send us a Message
                 </h2>
                 <form class="space-y-6">
                     <div>
                         <label
-                            class="block font-heading font-bold mb-2 text-[#304678]"
+                            class="block font-heading font-bold mb-2 text-[var(--color-primary)]"
                             >Name</label
                         >
                         <input
@@ -35,7 +37,7 @@ import Button from "../components/ui/Button.astro";
                     </div>
                     <div>
                         <label
-                            class="block font-heading font-bold mb-2 text-[#304678]"
+                            class="block font-heading font-bold mb-2 text-[var(--color-primary)]"
                             >Email</label
                         >
                         <input
@@ -46,51 +48,56 @@ import Button from "../components/ui/Button.astro";
                     </div>
                     <div>
                         <label
-                            class="block font-heading font-bold mb-2 text-[#304678]"
+                            class="block font-heading font-bold mb-2 text-[var(--color-primary)]"
                             >Message</label
                         >
                         <textarea
                             class="w-full px-4 py-3 border border-gray-300 bg-white h-32"
                             required></textarea>
                     </div>
-                    <Button variant="accent" size="lg">Send Message</Button>
+                    <Button variant="accent" size="lg" icon={false}
+                        >Send Message</Button
+                    >
                 </form>
             </div>
 
             <!-- Contact Info -->
             <div>
-                <h2 class="font-heading font-bold text-3xl mb-8 text-[#304678]">
+                <h2
+                    class="font-heading font-bold text-3xl mb-8 text-[var(--color-primary)]"
+                >
                     Get in Touch
                 </h2>
                 <div class="space-y-8">
                     <div>
                         <h3
-                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
                         >
                             Phone
                         </h3>
                         <p class="text-gray-600">
                             <a
                                 href="tel:+1234567890"
-                                class="hover:text-[#f59f0a]">(123) 456-7890</a>
+                                class="hover:text-[var(--color-accent)]"
+                                >(123) 456-7890</a>
                         </p>
                     </div>
                     <div>
                         <h3
-                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
                         >
                             Email
                         </h3>
                         <p class="text-gray-600">
                             <a
                                 href="mailto:info@company.com"
-                                class="hover:text-[#f59f0a]"
+                                class="hover:text-[var(--color-accent)]"
                                 >info@company.com</a>
                         </p>
                     </div>
                     <div>
                         <h3
-                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
                         >
                             Address
                         </h3>
@@ -100,7 +107,7 @@ import Button from "../components/ui/Button.astro";
                     </div>
                     <div>
                         <h3
-                            class="font-heading font-bold text-lg mb-2 text-[#304678]"
+                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
                         >
                             Hours
                         </h3>
