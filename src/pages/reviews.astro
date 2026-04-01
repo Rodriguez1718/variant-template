@@ -1,48 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-<<<<<<< HEAD
 import Review from "../components/layout/Reviews.astro";
 ---
 
 <BaseLayout>
     <Review />
-=======
-import Hero2 from "../components/layout/Hero2.astro";
----
-
-<BaseLayout
-    title="Reviews | Your Company"
-    description="See what our customers say about us"
->
-    <Hero2
-        title="Customer Reviews"
-        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=1080&fit=crop&q=80"
-        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "REVIEWS" }]}
-    />
-
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {
-                [1, 2, 3, 4, 5, 6].map((i) => (
-                    <div class="bg-white p-8 shadow-lg">
-                        <div class="flex items-center mb-4">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <span class="text-[var(--color-accent)] text-xl">
-                                    ★
-                                </span>
-                            ))}
-                        </div>
-                        <p class="text-gray-600 mb-4 italic">
-                            "Excellent service and professional team. Highly
-                            recommended!"
-                        </p>
-                        <p class="font-heading font-bold text-[var(--color-primary)]">
-                            Customer Name {i}
-                        </p>
-                    </div>
-                ))
-            }
-        </div>
-    </section>
->>>>>>> f3e8a897bb4b5022183b9a0fb267f21630af3c43
 </BaseLayout>
