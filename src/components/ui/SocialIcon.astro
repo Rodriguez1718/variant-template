@@ -1,0 +1,19 @@
+---
+interface Props {
+    href: string;
+    label: string;
+    icon: string;
+}
+
+const { href, label, icon } = Astro.props;
+---
+
+<a
+    href={href}
+    class="w-12 h-12 bg-primary hover:bg-accent flex items-center justify-center transition-colors"
+    aria-label={label}
+>
+    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <Fragment set:html={icon} />
+    </svg>
+</a>

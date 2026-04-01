@@ -2,6 +2,29 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/layout/Hero2.astro";
 import Button from "../components/ui/Button.astro";
+import ContactCard from "../components/ui/ContactCard.astro";
+import SocialIcon from "../components/ui/SocialIcon.astro";
+
+const phoneIcon =
+    '<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>';
+
+const emailIcon =
+    '<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>';
+
+const locationIcon =
+    '<path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>';
+
+const facebookIcon =
+    '<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>';
+
+const twitterIcon =
+    '<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>';
+
+const instagramIcon =
+    '<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>';
+
+const linkedinIcon =
+    '<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>';
 ---
 
 <BaseLayout
@@ -9,114 +32,233 @@ import Button from "../components/ui/Button.astro";
     description="Get in touch with our team"
 >
     <Hero2
-        title="Contact Us"
+        title="Let's Build Something Together"
         backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80"
         breadcrumbs={[{ label: "HOME", href: "/" }, { label: "CONTACT US" }]}
     />
 
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Contact Form -->
-            <div>
-                <h2
-                    class="font-heading font-bold text-4xl mb-8 text-[var(--color-primary)]"
-                >
-                    Send us a Message
-                </h2>
-                <form class="space-y-6">
-                    <div>
-                        <label
-                            class="block font-heading font-bold mb-2 text-[var(--color-primary)]"
-                            >Name</label
-                        >
-                        <input
-                            type="text"
-                            class="w-full px-4 py-3 border border-gray-300 bg-white"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label
-                            class="block font-heading font-bold mb-2 text-[var(--color-primary)]"
-                            >Email</label
-                        >
-                        <input
-                            type="email"
-                            class="w-full px-4 py-3 border border-gray-300 bg-white"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label
-                            class="block font-heading font-bold mb-2 text-[var(--color-primary)]"
-                            >Message</label
-                        >
-                        <textarea
-                            class="w-full px-4 py-3 border border-gray-300 bg-white h-32"
-                            required></textarea>
-                    </div>
-                    <Button variant="accent" size="lg" icon={false}
-                        >Send Message</Button
-                    >
-                </form>
-            </div>
+    <!-- Contact Cards Section -->
+    <section class="py-16 px-6 bg-[var(--color-background)]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <ContactCard
+                    icon={phoneIcon}
+                    title="Call Us Anytime"
+                    subtitle="Available 24/7 for emergencies"
+                    link="tel:+1234567890"
+                    linkText="(123) 456-7890"
+                />
 
-            <!-- Contact Info -->
-            <div>
-                <h2
-                    class="font-heading font-bold text-4xl mb-8 text-[var(--color-primary)]"
-                >
-                    Get in Touch
-                </h2>
+                <ContactCard
+                    icon={emailIcon}
+                    title="Email Us"
+                    subtitle="We'll respond within 24 hours"
+                    link="mailto:info@company.com"
+                    linkText="info@company.com"
+                />
+
+                <ContactCard
+                    icon={locationIcon}
+                    title="Visit Our Office"
+                    subtitle="Mon-Fri: 8am-5pm"
+                    link="#map"
+                    linkText="123 Main Street, New York, NY 10001"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- Form and Map Section -->
+    <section class="py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white p-8 md:p-12 shadow-lg">
+                    <h2
+                        class="heading-h2 font-heading font-bold text-primary mb-4"
+                    >
+                        Send Us a Message
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Have a question or need a quote? Fill out the form below
+                        and we'll get back to you as soon as possible.
+                    </p>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block font-heading font-bold mb-2 text-base text-primary"
+                                >
+                                    First Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    class="block font-heading font-bold mb-2 text-base text-primary"
+                                >
+                                    Last Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block font-heading font-bold mb-2 text-base text-primary"
+                            >
+                                Email Address *
+                            </label>
+                            <input
+                                type="email"
+                                class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label
+                                class="block font-heading font-bold mb-2 text-base text-primary"
+                            >
+                                Phone Number
+                            </label>
+                            <input
+                                type="tel"
+                                class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                class="block font-heading font-bold mb-2 text-base text-primary"
+                            >
+                                Service Interested In
+                            </label>
+                            <select
+                                class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base"
+                            >
+                                <option>Select a service</option>
+                                <option>HVAC Services</option>
+                                <option>Plumbing Services</option>
+                                <option>Electrical Services</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="block font-heading font-bold mb-2 text-base text-primary"
+                            >
+                                Your Message *
+                            </label>
+                            <textarea
+                                class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors h-32 text-base"
+                                required
+                                placeholder="Tell us about your project..."
+                            ></textarea>
+                        </div>
+                        <Button
+                            variant="accent"
+                            size="md"
+                            icon={false}
+                            class="w-full md:w-auto"
+                        >
+                            Send Message
+                        </Button>
+                    </form>
+                </div>
+
+                <!-- Map and Info -->
                 <div class="space-y-8">
-                    <div>
+                    <!-- Map -->
+                    <div class="bg-white shadow-lg overflow-hidden h-96">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9476519598093!2d-73.99185368459395!3d40.74117197932881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Company Location Map"></iframe>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="bg-primary p-8 text-white">
                         <h3
-                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
+                            class="font-heading font-bold text-xl md:text-2xl mb-6"
                         >
-                            Phone
+                            Business Hours
                         </h3>
-                        <p class="text-gray-600">
-                            <a
-                                href="tel:+1234567890"
-                                class="hover:text-[var(--color-accent)]"
-                                >(123) 456-7890</a
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center border-b border-white/20 pb-3"
                             >
-                        </p>
-                    </div>
-                    <div>
-                        <h3
-                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
-                        >
-                            Email
-                        </h3>
-                        <p class="text-gray-600">
-                            <a
-                                href="mailto:info@company.com"
-                                class="hover:text-[var(--color-accent)]"
-                                >info@company.com</a
+                                <span class="text-base font-medium"
+                                    >Monday - Friday</span
+                                >
+                                <span class="text-base font-bold"
+                                    >8:00 AM - 5:00 PM</span
+                                >
+                            </div>
+                            <div
+                                class="flex justify-between items-center border-b border-white/20 pb-3"
                             >
-                        </p>
+                                <span class="text-base font-medium"
+                                    >Saturday</span
+                                >
+                                <span class="text-base font-bold"
+                                    >9:00 AM - 3:00 PM</span
+                                >
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-base font-medium">Sunday</span
+                                >
+                                <span class="text-base font-bold">Closed</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-white/20">
+                            <p class="text-base text-white/90">
+                                <span class="font-bold"
+                                    >Emergency Services:</span
+                                > Available 24/7
+                            </p>
+                        </div>
                     </div>
-                    <div>
+
+                    <!-- Social Media -->
+                    <div class="bg-white p-8 shadow-lg">
                         <h3
-                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
+                            class="font-heading font-bold text-xl md:text-2xl text-primary mb-6"
                         >
-                            Address
+                            Follow Us
                         </h3>
-                        <p class="text-gray-600">
-                            123 Main Street<br />City, State 12345
-                        </p>
-                    </div>
-                    <div>
-                        <h3
-                            class="font-heading font-bold text-lg mb-2 text-[var(--color-primary)]"
-                        >
-                            Hours
-                        </h3>
-                        <p class="text-gray-600">
-                            Monday - Friday: 8am - 5pm<br />Saturday: 9am - 3pm<br
-                            />Sunday: Closed
-                        </p>
+                        <div class="flex gap-4">
+                            <SocialIcon
+                                href="#"
+                                label="Facebook"
+                                icon={facebookIcon}
+                            />
+                            <SocialIcon
+                                href="#"
+                                label="Twitter"
+                                icon={twitterIcon}
+                            />
+                            <SocialIcon
+                                href="#"
+                                label="Instagram"
+                                icon={instagramIcon}
+                            />
+                            <SocialIcon
+                                href="#"
+                                label="LinkedIn"
+                                icon={linkedinIcon}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
