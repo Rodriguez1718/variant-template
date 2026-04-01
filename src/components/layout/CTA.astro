@@ -1,0 +1,53 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    primaryCtaText?: string;
+    primaryCtaLink?: string;
+    secondaryCtaText?: string;
+    secondaryCtaLink?: string;
+    backgroundColor?: string;
+}
+
+const {
+    title = "Ready to Grow Your Business?",
+    subtitle = "Join hundreds of contractors who are getting more customers with our professional templates",
+    primaryCtaText = "Browse All Templates",
+    primaryCtaLink = "/templates",
+    secondaryCtaText = "Contact Sales",
+    secondaryCtaLink = "/contact",
+    backgroundColor = "var(--color-primary)",
+} = Astro.props;
+---
+
+<section class="py-20 px-6" style={`background-color: ${backgroundColor};`}>
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+            {title}
+        </h2>
+        <p class="text-xl text-gray-200 mb-12">
+            {subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+                variant="accent"
+                size="lg"
+                href={primaryCtaLink}
+                icon={false}
+            >
+                {primaryCtaText}
+            </Button>
+            <Button
+                variant="outline"
+                size="lg"
+                href={secondaryCtaLink}
+                icon={false}
+                class="!text-white !border-white hover:!bg-white hover:!text-[var(--color-primary)]"
+            >
+                {secondaryCtaText}
+            </Button>
+        </div>
+    </div>
+</section>

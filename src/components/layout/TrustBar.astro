@@ -1,0 +1,35 @@
+---
+interface Props {
+    stats?: Array<{ value: string; label: string }>;
+}
+
+const {
+    stats = [
+        { value: "500+", label: "Happy Contractors" },
+        { value: "50+", label: "Premium Templates" },
+        { value: "24/7", label: "Support Available" },
+        { value: "100%", label: "Mobile Optimized" },
+    ],
+} = Astro.props;
+---
+
+<section class="py-8 bg-[var(--color-primary)]">
+    <div class="max-w-6xl mx-auto px-6">
+        <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white"
+        >
+            {
+                stats.map((stat) => (
+                    <div>
+                        <p class="text-3xl md:text-4xl font-heading font-bold text-[var(--color-accent)]">
+                            {stat.value}
+                        </p>
+                        <p class="text-sm uppercase tracking-wide mt-2">
+                            {stat.label}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,86 @@
+---
+interface Props {
+    backgroundImage?: string;
+    title: string;
+    breadcrumbs?: Array<{ label: string; href?: string }>;
+}
+
+const {
+    backgroundImage = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80",
+    title,
+    breadcrumbs = [
+        { label: "HOME", href: "/" },
+        { label: title.toUpperCase() },
+    ],
+} = Astro.props;
+---
+
+<section
+    class="relative w-full h-96 md:h-[450px] flex items-center justify-center overflow-hidden"
+    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+>
+    <!-- Light Overlay -->
+    <div class="absolute inset-0 bg-white/70"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full px-6 text-center">
+        <!-- Breadcrumbs -->
+        {
+            breadcrumbs && breadcrumbs.length > 0 && (
+                <nav
+                    class="flex items-center justify-center gap-2 mb-6"
+                    aria-label="Breadcrumb"
+                >
+                    {breadcrumbs.map((crumb, index) => (
+                        <>
+                            {crumb.href ? (
+                                <a
+                                    href={crumb.href}
+                                    class="text-xs md:text-sm font-heading font-bold uppercase tracking-wider text-gray-600 hover:text-[#f59f0a] transition-colors"
+                                >
+                                    {crumb.label}
+                                </a>
+                            ) : (
+                                <span class="text-xs md:text-sm font-heading font-bold uppercase tracking-wider text-gray-800">
+                                    {crumb.label}
+                                </span>
+                            )}
+                            {index < breadcrumbs.length - 1 && (
+                                <svg
+                                    class="w-3 h-3 text-gray-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            )}
+                        </>
+                    ))}
+                </nav>
+            )
+        }
+
+        <!-- Page Title -->
+        <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 tracking-wider uppercase"
+        >
+            {title}
+        </h1>
+    </div>
+
+    <!-- Decorative Bottom Gradient -->
+    <div
+        class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white/20 to-transparent"
+    >
+    </div>
+</section>
+
+<style>
+    /* No parallax - background scrolls naturally */
+</style>

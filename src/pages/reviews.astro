@@ -1,16 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/layout/Hero.astro";
+import Hero2 from "../components/layout/Hero2.astro";
 ---
 
 <BaseLayout
     title="Reviews | Your Company"
     description="See what our customers say about us"
 >
-    <Hero
+    <Hero2
         title="Customer Reviews"
-        subtitle="Trusted by hundreds of satisfied clients"
-        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop"
+        backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=1080&fit=crop&q=80"
+        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "REVIEWS" }]}
     />
 
     <section class="py-16 px-6 max-w-6xl mx-auto">
@@ -20,14 +20,16 @@ import Hero from "../components/layout/Hero.astro";
                     <div class="bg-white p-8 shadow-lg">
                         <div class="flex items-center mb-4">
                             {[1, 2, 3, 4, 5].map((star) => (
-                                <span class="text-[#f59f0a] text-xl">★</span>
+                                <span class="text-[var(--color-accent)] text-xl">
+                                    ★
+                                </span>
                             ))}
                         </div>
                         <p class="text-gray-600 mb-4 italic">
                             "Excellent service and professional team. Highly
                             recommended!"
                         </p>
-                        <p class="font-heading font-bold text-[#304678]">
+                        <p class="font-heading font-bold text-[var(--color-primary)]">
                             Customer Name {i}
                         </p>
                     </div>
