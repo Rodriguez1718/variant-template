@@ -9,29 +9,202 @@
   --color-accent: #f59f0a;
 }
 
-/* Custom Typography */
-.text-sm { font-size: 0.707rem; }
-.text-base { font-size: 1rem; }
-.text-xl { font-size: 1.414rem; }
-.text-2xl { font-size: 1.999rem; }
-.text-3xl { font-size: 2.827rem; }
-.text-4xl { font-size: 3.997rem; }
-.text-5xl { font-size: 5.652rem; }
+/* Custom Typography - Optimized for 50+ Age Readers */
+.text-sm {
+  font-size: 0.707rem;
+}
 
-.font-heading { font-family: 'Poppins', sans-serif; }
-.font-body { font-family: 'Poppins', sans-serif; }
+.text-base {
+  font-size: 1rem;
+}
 
-.font-normal { font-weight: 400; }
-.font-bold { font-weight: 700; }
+.text-xl {
+  font-size: 1.414rem;
+}
 
-/* Navbar Styling */
+.text-2xl {
+  font-size: 1.999rem;
+}
+
+.text-3xl {
+  font-size: 2.827rem;
+}
+
+.text-4xl {
+  font-size: 3.997rem;
+}
+
+.text-5xl {
+  font-size: 5.652rem;
+}
+
+.font-heading {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Color Utilities */
+/* Text Colors */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-text {
+  color: var(--color-text);
+}
+
+/* Background Colors */
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.bg-text {
+  background-color: var(--color-text);
+}
+
+.bg-background {
+  background-color: var(--color-background);
+}
+
+/* Border Colors */
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.border-secondary {
+  border-color: var(--color-secondary);
+}
+
+.border-accent {
+  border-color: var(--color-accent);
+}
+
+.border-text {
+  border-color: var(--color-text);
+}
+
+/* Hover States */
+.hover\:bg-primary:hover {
+  background-color: var(--color-primary);
+}
+
+.hover\:bg-secondary:hover {
+  background-color: var(--color-secondary);
+}
+
+.hover\:bg-accent:hover {
+  background-color: var(--color-accent);
+}
+
+.hover\:text-primary:hover {
+  color: var(--color-primary);
+}
+
+.hover\:text-secondary:hover {
+  color: var(--color-secondary);
+}
+
+.hover\:text-accent:hover {
+  color: var(--color-accent);
+}
+
+/* Opacity Variants */
+.bg-primary\/10 {
+  background-color: rgba(48, 70, 120, 0.1);
+}
+
+.bg-primary\/20 {
+  background-color: rgba(48, 70, 120, 0.2);
+}
+
+.bg-primary\/30 {
+  background-color: rgba(48, 70, 120, 0.3);
+}
+
+.bg-primary\/50 {
+  background-color: rgba(48, 70, 120, 0.5);
+}
+
+.bg-secondary\/10 {
+  background-color: rgba(72, 86, 106, 0.1);
+}
+
+.bg-secondary\/20 {
+  background-color: rgba(72, 86, 106, 0.2);
+}
+
+.bg-secondary\/30 {
+  background-color: rgba(72, 86, 106, 0.3);
+}
+
+.bg-secondary\/50 {
+  background-color: rgba(72, 86, 106, 0.5);
+}
+
+.bg-accent\/10 {
+  background-color: rgba(245, 159, 10, 0.1);
+}
+
+.bg-accent\/20 {
+  background-color: rgba(245, 159, 10, 0.2);
+}
+
+.bg-accent\/30 {
+  background-color: rgba(245, 159, 10, 0.3);
+}
+
+.bg-accent\/50 {
+  background-color: rgba(245, 159, 10, 0.5);
+}
+
+/* Gradient Utilities */
+.gradient-primary-to-secondary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+.gradient-accent-to-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+}
+
+.gradient-secondary-to-accent {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+}
+
+/* Navbar Styling - Using Color Palette */
 .ftco-navbar-light .navbar-brand:before {
   position: absolute;
   top: 0;
   bottom: 0;
   right: -20px;
   width: 100px;
-  background: #ffa62b;
+  background: var(--color-accent);
   transform: skewX(-20deg);
   z-index: -1;
   content: '';
@@ -44,5 +217,5 @@
   bottom: 0;
   content: '';
   width: 360%;
-  background: #ffa62b;
+  background: var(--color-accent);
 }
