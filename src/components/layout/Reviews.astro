@@ -4,54 +4,63 @@ const testimonials = [
     name: "John Martinez",
     role: "HVAC Contractor",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=faces",
     text: "The investment I made in my business with BuildPro has been absolutely game-changing. We closed 23 new clients in just 60 days using their system. The website they built for us looks professional, loads fast, and most importantly, it converts visitors into paying customers. I can't believe I waited so long to make this investment."
   },
   {
     name: "Sarah Williams",
     role: "Plumbing Services",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces",
     text: "Our Google ranking went from page 4 to #1 in less than three months. The results have been incredible - we've had to hire 3 more techs just to handle all the demand. BuildPro's SEO strategy and website design work together perfectly. Every dollar we spent has come back tenfold. This is the real deal."
   },
   {
     name: "Michael Chen",
     role: "Electrical",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces",
     text: "Best investment I've ever made for my business. Period. No more posting in the Facebook groups begging for leads or paying ridiculous fees to lead generation companies. Our new website brings in qualified leads every single day. The booking system makes it easy for customers to schedule, and we're busier than we've ever been."
   },
   {
     name: "Emma Rodriguez",
     role: "General Contractor",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces",
     text: "Their paid ads strategy brought in $400k in projects in Q4 alone. This team operates on a different level than anyone else I've worked with. They understand contractor businesses inside and out. The website, the ads, the follow-up system - everything works together seamlessly. I'm booked solid for the next 6 months."
   },
   {
     name: "David Thompson",
     role: "Roofing",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces",
     text: "Our competitor has been in business 20 years. We launched just 3 years ago and we're already running circles around them everywhere. BuildPro gave us a website that makes us look like the established authority in our market. The lead flow is consistent, the quality is high, and our close rate has never been better."
   },
   {
     name: "Lisa Park",
     role: "Landscaping",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces",
     text: "We tripled our monthly revenue in just 4 months after launching our new website. The ROI speaks for itself - this system just works. I was skeptical at first, but the results are undeniable. We're getting calls from customers who found us on Google, and they're ready to buy. No more tire kickers, just serious clients."
   },
   {
     name: "Robert Kim",
     role: "Home Renovation",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces",
     text: "From struggling to find clients to booking out 3 months in advance. That's the transformation BuildPro delivered for my business. The website is beautiful, mobile-friendly, and converts like crazy. Their team handled everything from design to SEO to setting up our Google Ads. It's been a complete game changer for us."
   },
   {
     name: "Jennifer Davis",
     role: "Pool Services",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces",
     text: "I finally stopped chasing leads and started attracting premium clients who are ready to invest in quality work. BuildPro's website and marketing system has completely changed how we do business. We're getting 3-4 qualified leads per day, and our average project value has increased by 40%. Worth every single penny invested."
   },
   {
     name: "Carlos Mendez",
     role: "Painting",
     rating: 5,
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces",
     text: "We went from $50k to $200k in annual revenue in just 18 months. Their system is absolutely incredible. The website looks professional, ranks high on Google, and the booking system makes it easy for customers to schedule estimates. I've referred three other contractors to BuildPro because the results speak for themselves."
   }
 ];
@@ -90,12 +99,14 @@ const testimonials = [
               </blockquote>
 
               <div class="flex items-center gap-4 mt-auto">
-                <div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0 bg-primary">
-                  {testimonial.name.charAt(0)}
-                </div>
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  class="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                />
                 <div>
                   <h4 class="font-bold text-base mb-1 text-text">{testimonial.name}</h4>
-                  <p class="text-sm text-gray-500">{testimonial.role}</p>
+                  <p class="text-[14px] text-gray-500">{testimonial.role}</p>
                 </div>
               </div>
             </div>
