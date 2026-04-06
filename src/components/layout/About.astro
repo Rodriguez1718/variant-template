@@ -19,11 +19,12 @@ import Button from "../ui/Button.astro";
           <img 
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" 
             alt="Digital team collaboration" 
-            class="w-full h-[350px] object-cover shadow-xl"
+            class="w-full h-[350px] object-cover shadow-xl hidden md:block"
           />
         </div>
 
-        <div class="absolute bottom-0 right-[5px] bg-white shadow-xl p-6 w-60 h-[230px]">
+        <!-- Stats Card - Hidden on mobile, shown as overlay on larger screens -->
+        <div class="absolute bottom-0 right-[5px] bg-white shadow-xl p-6 w-60 h-[230px] hidden sm:block">
           <div class="flex justify-between items-start mb-3">
             <h3 class="text-lg font-bold text-primary">Proven Results</h3>
             <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,10 +41,29 @@ import Button from "../ui/Button.astro";
             <p class="text-base text-gray-600">Contractors Served</p>
           </div>
         </div>
+        
+        <!-- Mobile Stats Card - Shown below image on mobile only -->
+        <div class="sm:hidden bg-white shadow-xl p-6 rounded-lg">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-lg font-bold text-primary">Proven Results</h3>
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          
+          <div class="w-full h-px mb-3 bg-primary opacity-20"></div>
+          
+          <div class="text-center mt-6">
+            <div class="text-4xl font-bold mb-1 text-primary">
+              <span class="counter-mobile inline-block min-w-[4rem] text-right tabular-nums" data-target="500">0</span>+
+            </div>
+            <p class="text-base text-gray-600">Contractors Served</p>
+          </div>
+        </div>
       </div>
 
       <div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight -ml-1 text-primary">
+        <h2 class="heading-h2 font-bold mb-4 leading-tight -ml-1 text-primary">
           Digital Success<br>
           For Contractors<br>
           Who Dominate
@@ -103,24 +123,25 @@ import Button from "../ui/Button.astro";
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const counter = document.querySelector('.counter');
-    if (!counter) return;
+    const counters = document.querySelectorAll('.counter, .counter-mobile');
     
-    const target = parseInt(counter.getAttribute('data-target') || '0');
-    const duration = 1000; // 1 second (faster)
-    const increment = target / (duration / 16); // 60fps
-    let current = 0;
-    
-    const updateCounter = () => {
-      current += increment;
-      if (current < target) {
-        counter.textContent = Math.floor(current).toString();
-        requestAnimationFrame(updateCounter);
-      } else {
-        counter.textContent = target.toString();
-      }
-    };
-    
-    updateCounter();
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target') || '0');
+      const duration = 1000; // 1 second (faster)
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.textContent = Math.floor(current).toString();
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toString();
+        }
+      };
+      
+      updateCounter();
+    });
   });
 </script>
