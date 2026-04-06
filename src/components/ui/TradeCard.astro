@@ -31,7 +31,7 @@ const { name, slug, image, templateCount } = Astro.props;
             >
                 {name}
             </h3>
-            <p class="text-base text-gray-200">
+            <p class="text-base text-gray-200 font-body">
                 {templateCount}
                 {templateCount === 1 ? "Template" : "Templates"} Available
             </p>
@@ -40,7 +40,7 @@ const { name, slug, image, templateCount } = Astro.props;
     <div class="p-6 bg-white">
         <Button
             variant="accent"
-            size="sm"
+            size="md"
             icon={false}
             class="w-full text-center"
         >
