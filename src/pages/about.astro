@@ -9,7 +9,6 @@ import Hero2 from "../components/layout/Hero2.astro";
 >
     <Hero2
         title="About Us"
-        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=80"
         breadcrumbs={[{ label: "HOME", href: "/" }, { label: "ABOUT US" }]}
     />
 
@@ -40,6 +39,51 @@ import Hero2 from "../components/layout/Hero2.astro";
                 class="bg-[var(--color-primary)] h-96 flex items-center justify-center text-white"
             >
                 <p class="text-center">Company Image</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-background">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading-h2 font-heading font-bold text-primary mb-4">
+                    Our Values
+                </h2>
+                <p class="text-xl font-body text-gray-600 max-w-3xl mx-auto">
+                    These core principles guide everything we do and shape how we serve our clients
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 shadow-lg">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-heading font-bold text-white">1</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-primary">Quality First</h3>
+                    </div>
+                    <p class="font-body text-gray-600">We never compromise on quality. Every project receives our full attention and expertise to ensure exceptional results.</p>
+                </div>
+
+                <div class="bg-white p-8 shadow-lg">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-heading font-bold text-white">2</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-primary">Reliability</h3>
+                    </div>
+                    <p class="font-body text-gray-600">We show up on time, complete projects as promised, and stand behind our work with solid guarantees.</p>
+                </div>
+
+                <div class="bg-white p-8 shadow-lg">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-heading font-bold text-white">3</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-primary">Customer Focus</h3>
+                    </div>
+                    <p class="font-body text-gray-600">Your satisfaction is our priority. We listen to your needs and work closely with you throughout every project.</p>
+                </div>
             </div>
         </div>
     </section>
