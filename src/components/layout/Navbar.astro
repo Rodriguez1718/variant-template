@@ -20,7 +20,7 @@ function getTradeIcon(tradeName: string) {
 }
 ---
 
-<nav class="sticky top-0 z-50 relative h-29">
+<nav class="fixed top-0 left-0 right-0 z-50 h-29 transition-transform duration-300 ease-in-out" id="navbar">
   <!-- Mobile Orange angled section -->
   <div class="absolute inset-0 bg-primary lg:hidden">
     <div
@@ -38,7 +38,7 @@ function getTradeIcon(tradeName: string) {
   </div>
 
   <!-- Desktop Content -->
-  <div class="relative z-10 flex h-full w-full px-8 hidden lg:flex">
+  <div class="desktop-content relative z-10 flex h-full w-full px-8 hidden lg:flex">
     <!-- White background for logo area - extends to left edge but follows logo -->
     <div
       class="absolute inset-y-0 right-0 bg-white z-20"
@@ -47,7 +47,7 @@ function getTradeIcon(tradeName: string) {
     </div>
 
     <!-- Logo Section - fixed width - DESKTOP ONLY -->
-    <div class="flex items-center h-full px-4 relative z-30 w-80">
+    <div class="logo-section flex items-center h-full px-4 relative z-30 w-80">
       <a
         href="/"
         class="flex items-center text-primary hover:opacity-80 transition-opacity duration-300"
@@ -67,7 +67,7 @@ function getTradeIcon(tradeName: string) {
     <!-- Right content section - starts after white background with proper spacing - DESKTOP ONLY -->
     <div class="flex flex-col h-full flex-1 ml-18">
       <!-- Top row with contact info and quote button -->
-      <div class="flex items-center h-10 flex-1 relative justify-between">
+      <div class="contact-row flex items-center h-10 flex-1 relative justify-between">
         <!-- Black background extending from logo area to right edge -->
         <div
           class="absolute inset-y-0 bg-black hidden lg:block"
@@ -137,7 +137,7 @@ function getTradeIcon(tradeName: string) {
 
       <!-- Bottom row with navigation -->
       <div
-        class="hidden lg:flex items-center space-x-8 text-white h-12 px-4 flex-1 relative"
+        class="nav-section hidden lg:flex items-center space-x-8 text-white h-12 px-4 flex-1 relative"
       >
         <!-- Gray background extending from logo area to right edge -->
         <div
@@ -232,7 +232,7 @@ function getTradeIcon(tradeName: string) {
 
   <!-- Mobile Content -->
   <div
-    class="lg:hidden flex items-center justify-between w-full h-full px-3 relative z-30"
+    class="mobile-content lg:hidden flex items-center justify-between w-full h-full px-3 relative z-30"
   >
     <!-- Mobile Logo -->
     <div class="flex items-center min-w-0 flex-1 mr-2">
@@ -374,6 +374,70 @@ function getTradeIcon(tradeName: string) {
   </div>
 </nav>
 
+<style>
+  /* Compact navbar styles */
+  .navbar-compact .contact-row {
+    display: none;
+  }
+  
+  .navbar-compact {
+    height: 3rem;
+  }
+  
+  .navbar-compact .desktop-content {
+    flex-direction: row;
+    align-items: center;
+    height: 3rem;
+  }
+  
+  .navbar-compact .logo-section {
+    height: 3rem;
+    width: auto;
+    min-width: 200px;
+  }
+  
+  .navbar-compact .nav-section {
+    height: 3rem;
+    margin-left: 0;
+    padding: 0;
+    flex: 1;
+    display: flex !important;
+  }
+  
+  .navbar-compact .nav-section .nav-links {
+    margin-left: 2rem;
+  }
+  
+  .navbar-compact .right-content {
+    display: none;
+  }
+  
+  /* Hide background elements in compact mode */
+  .navbar-compact .desktop-bg,
+  .navbar-compact .contact-bg,
+  .navbar-compact .nav-bg {
+    display: none;
+  }
+  
+  /* Smooth transitions */
+  .navbar-compact .desktop-content,
+  .navbar-compact .logo-section,
+  .navbar-compact .nav-section {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Mobile compact state - same as normal for mobile */
+  @media (max-width: 1023px) {
+    .navbar-compact {
+      height: 7.25rem; /* h-29 equivalent */
+    }
+    
+    .navbar-compact .mobile-content {
+      height: 7.25rem;
+    }
+  }
+</style>
+
 <script>
   // Mobile menu toggle functionality
   document.addEventListener("DOMContentLoaded", function () {
@@ -388,6 +452,67 @@ function getTradeIcon(tradeName: string) {
       "mobile-trades-dropdown",
     );
     const mobileTradesArrow = document.getElementById("mobile-trades-arrow");
+
+    // Navbar scroll behavior
+    const navbar = document.getElementById("navbar");
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateNavbar() {
+      if (!navbar) return; // Guard clause for null navbar
+      
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 10) {
+        // At top - show full navbar
+        navbar.style.transform = "translateY(0)";
+        navbar.classList.remove("navbar-compact");
+        console.log('At top - full navbar');
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide navbar completely (keep current state while hiding)
+        navbar.style.transform = "translateY(-100%)";
+        console.log('Scrolling down - hiding navbar');
+        
+        // Close mobile menu if open
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          if (hamburgerIcon && closeIcon) {
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+          }
+          if (mobileTradesDropdown && mobileTradesArrow) {
+            mobileTradesDropdown.classList.add("hidden");
+            mobileTradesArrow.classList.remove("rotate-180");
+          }
+        }
+      } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
+        // Scrolling up (but not at top) - show compact navbar
+        navbar.style.transform = "translateY(0)";
+        navbar.classList.add("navbar-compact");
+        console.log('Scrolling up - compact navbar');
+      }
+      
+      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+      ticking = false;
+    }
+
+    function requestTick() {
+      if (!ticking && navbar) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
+    }
+
+    // Only add scroll listener if navbar exists
+    if (navbar) {
+      window.addEventListener("scroll", requestTick, { passive: true });
+      
+      // Also listen for touchmove on mobile
+      window.addEventListener("touchmove", requestTick, { passive: true });
+      
+      // Initial call to set correct state
+      updateNavbar();
+    }
 
     // Toggle mobile menu
     if (mobileMenuButton && mobileMenu && hamburgerIcon && closeIcon) {
