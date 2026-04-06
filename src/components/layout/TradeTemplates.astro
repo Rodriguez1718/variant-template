@@ -37,10 +37,10 @@ const { tradeData } = Astro.props;
                     {/* Trade Header */}
                     <div class="flex items-center justify-between mb-8 pb-4 border-b-2 border-accent">
                         <div>
-                            <h2 class="text-2xl md:text-3xl font-heading font-bold text-primary mb-2">
+                            <h2 class="heading-h2 font-heading font-bold text-primary mb-2">
                                 {data.trade.name}
                             </h2>
-                            <p class="text-base text-gray-600">
+                            <p class="text-subtitle text-gray-600">
                                 {data.trade.hoverDescription}
                             </p>
                         </div>
@@ -58,50 +58,69 @@ const { tradeData } = Astro.props;
 
                     {/* Template Previews */}
                     {data.previewTemplates.length > 0 ? (
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
-                            {data.previewTemplates.map((template) => (
-                                <div class="bg-white shadow-md hover:shadow-xl transition-all duration-300 group">
-                                    <div class="relative h-72 overflow-hidden bg-gray-200">
-                                        <div class="absolute top-4 right-4 z-10">
-                                            <span class="bg-accent text-white px-3 py-1 text-xs font-heading font-bold uppercase">
-                                                {template.data.category}
-                                            </span>
+                        <>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
+                                {data.previewTemplates.map((template) => (
+                                    <div class="bg-white shadow-md hover:shadow-xl transition-all duration-300 group">
+                                        <div class="relative h-72 overflow-hidden bg-gray-200">
+                                            <div class="absolute top-4 right-4 z-10">
+                                                <span class="bg-accent text-white px-3 py-1 text-xs font-heading font-bold uppercase">
+                                                    {template.data.category}
+                                                </span>
+                                            </div>
+                                            <img
+                                                src={template.data.thumbnail}
+                                                alt={template.data.title}
+                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
                                         </div>
-                                        <img
-                                            src={template.data.thumbnail}
-                                            alt={template.data.title}
-                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
+                                        <div class="p-6">
+                                            <h3 class="text-xl font-heading font-bold text-primary mb-2">
+                                                {template.data.title}
+                                            </h3>
+                                            <p class="text-base text-gray-600 line-clamp-2">
+                                                {template.data.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="p-6">
-                                        <h3 class="text-lg md:text-xl font-heading font-bold text-primary mb-2">
-                                            {template.data.title}
-                                        </h3>
-                                        <p class="text-base text-gray-600 line-clamp-2">
-                                            {template.data.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+
+                            {/* View All Button - Only show when templates exist */}
+                            <div class="text-center">
+                                <Button
+                                    variant="outline"
+                                    size="md"
+                                    href={`/trades-we-serve/${data.trade.slug}`}
+                                >
+                                    View All {data.trade.name} Templates
+                                </Button>
+                            </div>
+                        </>
                     ) : (
-                        <div class="bg-gray-50 p-8 text-center mb-6">
-                            <p class="text-base text-gray-600">
-                                Templates coming soon for this industry
-                            </p>
+                        <div class="bg-white border-2 border-dashed border-gray-300 py-16 px-8 text-center">
+                            <div class="max-w-md mx-auto">
+                                <div class="w-16 h-16 bg-accent/10 mx-auto mb-6 flex items-center justify-center">
+                                    <svg
+                                        class="w-8 h-8 text-accent"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                        />
+                                    </svg>
+                                </div>
+                                <p class="text-base text-gray-600 font-heading">
+                                    Templates coming soon for this industry
+                                </p>
+                            </div>
                         </div>
                     )}
-
-                    {/* View All Button */}
-                    <div class="text-center">
-                        <Button
-                            variant="outline"
-                            size="md"
-                            href={`/trades-we-serve/${data.trade.slug}`}
-                        >
-                            View All {data.trade.name} Templates
-                        </Button>
-                    </div>
                 </div>
             ))
         }
