@@ -1,6 +1,6 @@
 ---
 title: "Elite Plumbing & Drain Care"
-trade: "Plumbing"
+trade: "plumbing"
 description: "A professional service-oriented template designed for plumbing contractors focusing on building credibility, customer reviews, and rapid response."
 thumbnail: "/images/plumbing2.avif"
 liveDemoUrl: "https://plumbing-template-2-orcin.vercel.app/"
