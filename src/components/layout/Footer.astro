@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 interface Props {
     companyName?: string;
     tagline?: string;
@@ -18,15 +20,65 @@ const {
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+
+// Get latest trades and templates
+const allTrades = await getCollection("trades");
+const allTemplates = await getCollection("templates");
+
+// Sort trades by order for services list (ascending)
+const sortedTradesForServices = allTrades.sort(
+    (a, b) => a.data.order - b.data.order,
+);
+
+// Sort trades by order (descending) for updates and templates by most recent
+const sortedTrades = allTrades.sort((a, b) => b.data.order - a.data.order);
+const sortedTemplates = [...allTemplates].reverse(); // Most recent last, so reverse
+
+// Combine all updates with timestamps
+const allUpdates = [
+    ...sortedTrades.map((trade) => ({
+        type: "trade",
+        title: `New Trade Added: ${trade.data.name}`,
+        image: trade.data.image,
+        link: `/trades-we-serve/${trade.data.slug}`,
+    })),
+    ...sortedTemplates.map((template) => ({
+        type: "template",
+        title: `New Template: ${template.data.title}`,
+        image: template.data.thumbnail,
+        link: `/our-work`,
+    })),
+];
+
+// Get the 2 most recent updates, prioritizing templates
+const templateUpdates = allUpdates
+    .filter((u) => u.type === "template")
+    .slice(0, 2);
+const tradeUpdates = allUpdates.filter((u) => u.type === "trade").slice(0, 2);
+
+// Combine: show at least 1 template if available, then fill with trades
+const updates = [];
+if (templateUpdates.length > 0) {
+    updates.push(templateUpdates[0]);
+}
+if (tradeUpdates.length > 0 && updates.length < 2) {
+    updates.push(tradeUpdates[0]);
+}
+if (templateUpdates.length > 1 && updates.length < 2) {
+    updates.push(templateUpdates[1]);
+}
+if (tradeUpdates.length > 1 && updates.length < 2) {
+    updates.push(tradeUpdates[1]);
+}
 ---
 
-<footer class="bg-[var(--color-text)] text-white">
+<footer class="bg-text text-white">
     <!-- Main Footer Content -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
             <!-- Company Info -->
-            <div>
-                <div class="flex items-center gap-3 mb-6">
+            <div class="lg:col-span-3">
+                <div class="flex items-center gap-3 mb-4">
                     <img
                         src="/images/logo.avif"
                         alt={companyName}
@@ -36,7 +88,7 @@ const currentYear = new Date().getFullYear();
                         {companyName}
                     </h3>
                 </div>
-                <p class="text-gray-400 text-xl leading-relaxed mb-8">
+                <p class="text-gray-400 text-base leading-relaxed mb-6">
                     {tagline}
                 </p>
 
@@ -59,7 +111,7 @@ const currentYear = new Date().getFullYear();
                         >
                             Get a Free Quote
                         </p>
-                        <p class="text-xl font-heading font-bold text-white">
+                        <p class="text-base font-heading font-bold text-white">
                             {phone}
                         </p>
                     </div>
@@ -67,161 +119,143 @@ const currentYear = new Date().getFullYear();
             </div>
 
             <!-- Links -->
-            <div>
-                <h3 class="font-heading font-bold text-xl mb-6">Links</h3>
-                <ul class="space-y-3">
-                    <li>
-                        <a
-                            href="/about"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >About</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/templates"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Our Templates</a
-                        >
-                    </li>
+            <div class="lg:col-span-2">
+                <h3 class="font-heading font-bold text-lg mb-4">Links</h3>
+                <ul class="space-y-2">
                     <li>
                         <a
                             href="/reviews"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Latest News</a
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Reviews</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/our-work"
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Our Work</a
                         >
                     </li>
                     <li>
                         <a
                             href="/trades-we-serve"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Our Contractors</a
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Trades We Serve</a
                         >
                     </li>
                     <li>
                         <a
-                            href="/terms"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Terms of Use</a
+                            href="/what-we-do"
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >What We Do</a
                         >
                     </li>
                     <li>
                         <a
                             href="/contact"
-                            class="text-gray-400 hover:text-accent transition-colors text-lg"
-                            >Contact Us</a
+                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            >Contact</a
                         >
                     </li>
                 </ul>
             </div>
 
-            <!-- Latest News -->
-            <div>
-                <h3 class="font-heading font-bold text-xl mb-6">Latest News</h3>
-                <div class="space-y-4">
-                    <a href="/blog/build-tools" class="flex gap-3 group">
-                        <img
-                            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=80&h=80&fit=crop"
-                            alt="Blog post"
-                            class="w-16 h-16 object-cover"
-                        />
-                        <div>
-                            <p class="text-xs text-accent uppercase mb-1">
-                                May 14, 2023
-                            </p>
-                            <p
-                                class="text-lg text-gray-300 group-hover:text-accent transition-colors"
-                            >
-                                How to Build your Mechanical Tools
-                            </p>
-                        </div>
-                    </a>
-                    <a href="/blog/competition" class="flex gap-3 group">
-                        <img
-                            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=80&h=80&fit=crop"
-                            alt="Blog post"
-                            class="w-16 h-16 object-cover"
-                        />
-                        <div>
-                            <p class="text-xs text-accent uppercase mb-1">
-                                May 14, 2023
-                            </p>
-                            <p
-                                class="text-lg text-gray-300 group-hover:text-accent transition-colors"
-                            >
-                                Don't get framed by the competitions
-                            </p>
-                        </div>
-                    </a>
+            <!-- Services (Dynamic) -->
+            <div class="lg:col-span-2">
+                <h3 class="font-heading font-bold text-lg mb-4">Services</h3>
+                <ul class="space-y-2">
+                    {
+                        sortedTradesForServices.map((trade) => (
+                            <li>
+                                <a
+                                    href={`/trades-we-serve/${trade.data.slug}`}
+                                    class="text-gray-400 hover:text-accent transition-colors text-base"
+                                >
+                                    {trade.data.name}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <!-- Latest Updates -->
+            <div class="lg:col-span-3">
+                <h3 class="font-heading font-bold text-lg mb-4">
+                    Latest Updates
+                </h3>
+                <div class="space-y-3">
+                    {
+                        updates.map((update) => (
+                            <a href={update.link} class="flex gap-3 group">
+                                <img
+                                    src={update.image}
+                                    alt={update.title}
+                                    class="w-16 h-16 object-cover"
+                                />
+                                <div>
+                                    <p class="text-xs text-accent uppercase mb-1">
+                                        {update.type === "trade"
+                                            ? "New Trade"
+                                            : "New Template"}
+                                    </p>
+                                    <p class="text-base text-gray-300 group-hover:text-accent transition-colors line-clamp-2">
+                                        {update.title}
+                                    </p>
+                                </div>
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
 
             <!-- Contact -->
-            <div>
-                <h3 class="font-heading font-bold text-xl mb-6">Contact</h3>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-3">
-                        <div class="w-5 h-5 mt-1">
-                            <svg
-                                class="w-5 h-5 text-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-lg font-heading font-bold mb-1">
-                                Email
-                            </p>
-                            <a
-                                href={`mailto:${email}`}
-                                class="text-gray-400 hover:text-accent transition-colors text-lg"
-                                >{email}</a
-                            >
-                        </div>
+            <div class="lg:col-span-2">
+                <h3 class="font-heading font-bold text-lg mb-4">Contact</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-2">
+                        <svg
+                            class="w-5 h-5 text-accent mt-0.5 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                            ></path>
+                        </svg>
+                        <a
+                            href={`mailto:${email}`}
+                            class="text-gray-400 hover:text-accent transition-colors text-base break-words"
+                            >{email}</a
+                        >
                     </div>
 
-                    <div class="flex items-start gap-3">
-                        <div class="w-5 h-5 mt-1">
-                            <svg
-                                class="w-5 h-5 text-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-lg font-heading font-bold mb-1">
-                                Address
-                            </p>
-                            <p class="text-gray-400 text-xl">{address}</p>
-                        </div>
+                    <div class="flex items-start gap-2">
+                        <svg
+                            class="w-5 h-5 text-accent mt-0.5 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                            ></path>
+                        </svg>
+                        <p class="text-gray-400 text-base break-words">
+                            {address}
+                        </p>
                     </div>
 
-                    <div class="flex items-start gap-3">
-                        <div class="w-5 h-5 mt-1">
-                            <svg
-                                class="w-5 h-5 text-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-lg font-heading font-bold mb-1">
-                                Mon - Sat
-                            </p>
-                            <p class="text-gray-400 text-xl">{hours}</p>
-                        </div>
+                    <div class="flex items-start gap-2">
+                        <svg
+                            class="w-5 h-5 text-accent mt-0.5 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                            ></path>
+                        </svg>
+                        <p class="text-gray-400 text-base">{hours}</p>
                     </div>
                 </div>
             </div>
@@ -229,16 +263,16 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar -->
-    <div class="bg-[#000000] py-6">
+    <div class="bg-[#000000] py-4">
         <div
-            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4"
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3"
         >
-            <p class="text-gray-500 text-lg">
+            <p class="text-gray-500 text-sm text-center md:text-left">
                 © All Copyright {currentYear} by {companyName}
             </p>
 
             <!-- Social Links -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <a
                     href="#"
                     class="w-8 h-8 bg-secondary/30 hover:bg-accent flex items-center justify-center transition-colors"

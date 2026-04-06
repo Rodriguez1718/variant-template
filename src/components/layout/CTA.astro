@@ -15,7 +15,7 @@ const {
     title = "Ready to Grow Your Business?",
     subtitle = "Join hundreds of contractors who are getting more customers with our professional templates",
     primaryCtaText = "Browse All Templates",
-    primaryCtaLink = "/templates",
+    primaryCtaLink = "/our-work",
     secondaryCtaText = "Contact Sales",
     secondaryCtaLink = "/contact",
     backgroundColor = "var(--color-primary)",
@@ -23,8 +23,8 @@ const {
 ---
 
 <section class="py-20 px-6" style={`background-color: ${backgroundColor};`}>
-    <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+    <div class="mx-auto text-center">
+        <h2 class="heading-h2 font-heading font-bold text-white mb-6">
             {title}
         </h2>
         <p class="text-xl text-gray-200 mb-12">
@@ -33,7 +33,7 @@ const {
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
                 variant="accent"
-                size="lg"
+                size="md"
                 href={primaryCtaLink}
                 icon={false}
             >
@@ -41,7 +41,7 @@ const {
             </Button>
             <Button
                 variant="outline"
-                size="lg"
+                size="md"
                 href={secondaryCtaLink}
                 icon={false}
                 class="!text-white !border-white hover:!bg-white hover:!text-[var(--color-primary)]"
