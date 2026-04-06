@@ -1,0 +1,175 @@
+---
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    faqs?: FAQItem[];
+}
+
+const {
+    title = "Frequently Asked Questions",
+    subtitle = "Find answers to common questions about our services",
+    faqs = [
+        {
+            question: "How long does it take to get my website up and running?",
+            answer: "Most of our templates can be customized and launched within 1-2 weeks. The timeline depends on the complexity of your customization needs and how quickly you provide content and feedback.",
+        },
+        {
+            question: "Do I need technical knowledge to manage my website?",
+            answer: "No technical knowledge is required. Our templates are built with user-friendly content management systems that make it easy to update text, images, and other content without coding.",
+        },
+        {
+            question: "Can I customize the template to match my brand?",
+            answer: "Absolutely! All our templates are fully customizable. You can adjust colors, fonts, images, and layout to perfectly match your brand identity and business needs.",
+        },
+        {
+            question: "What kind of support do you provide?",
+            answer: "We offer comprehensive support including initial setup assistance, training on how to use your website, and ongoing technical support. Our team is available via email and phone to help you succeed.",
+        },
+        {
+            question: "Are the websites mobile-friendly?",
+            answer: "Yes, all our templates are fully responsive and optimized for mobile devices. Your website will look great and function perfectly on smartphones, tablets, and desktop computers.",
+        },
+        {
+            question: "What's included in the template price?",
+            answer: "Each template includes the complete website design, all necessary pages, contact forms, SEO optimization, mobile responsiveness, and one year of technical support and updates.",
+        },
+    ],
+} = Astro.props;
+---
+
+<section class="py-20 px-6 bg-white">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="heading-h2 font-heading font-bold text-primary mb-4">
+                {title}
+            </h2>
+            <p class="text-subtitle text-gray-600">
+                {subtitle}
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            {
+                faqs.map((faq, index) => (
+                    <div class="faq-item border-2 border-gray-200 bg-white transition-all duration-300">
+                        <button
+                            class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors"
+                            aria-expanded="false"
+                            data-faq-index={index}
+                        >
+                            <span class="text-xl font-heading font-bold text-primary pr-4">
+                                {faq.question}
+                            </span>
+                            <div class="faq-icon shrink-0 w-8 h-8 bg-accent flex items-center justify-center transition-transform duration-300">
+                                <svg
+                                    class="w-5 h-5 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="3"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    />
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="faq-answer overflow-hidden transition-all duration-300 max-h-0">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-base text-gray-600 leading-relaxed">
+                                    {faq.answer}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="text-center mt-12 pt-8 border-t-2 border-gray-200">
+            <p class="text-base text-gray-600 mb-4">Still have questions?</p>
+            <a
+                href="/contact"
+                class="inline-flex items-center gap-2 text-accent font-heading font-bold uppercase text-base hover:text-primary transition-colors"
+            >
+                Contact Us
+                <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-item.active {
+        border-color: var(--color-accent);
+    }
+
+    .faq-item.active .faq-icon {
+        transform: rotate(45deg);
+    }
+
+    .faq-answer {
+        transition: max-height 0.3s ease-out;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const faqButtons = document.querySelectorAll(".faq-question");
+
+        faqButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const faqItem = button.closest(".faq-item");
+                const faqAnswer = faqItem?.querySelector(".faq-answer");
+                const isActive = faqItem?.classList.contains("active");
+
+                // Close all other FAQs
+                document.querySelectorAll(".faq-item").forEach((item) => {
+                    if (item !== faqItem) {
+                        item.classList.remove("active");
+                        const answer = item.querySelector(".faq-answer");
+                        if (answer instanceof HTMLElement) {
+                            answer.style.maxHeight = "0";
+                        }
+                        const btn = item.querySelector(".faq-question");
+                        btn?.setAttribute("aria-expanded", "false");
+                    }
+                });
+
+                // Toggle current FAQ
+                if (isActive) {
+                    faqItem?.classList.remove("active");
+                    if (faqAnswer instanceof HTMLElement) {
+                        faqAnswer.style.maxHeight = "0";
+                    }
+                    button.setAttribute("aria-expanded", "false");
+                } else {
+                    faqItem?.classList.add("active");
+                    if (faqAnswer instanceof HTMLElement) {
+                        faqAnswer.style.maxHeight =
+                            faqAnswer.scrollHeight + "px";
+                    }
+                    button.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+    });
+</script>
