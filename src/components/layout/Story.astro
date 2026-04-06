@@ -1,0 +1,58 @@
+---
+// Story component - displays company story/about information
+interface Props {
+    title?: string;
+    paragraphs?: string[];
+    image?: string;
+    imageAlt?: string;
+    reverse?: boolean;
+}
+
+const {
+    title = "Our Story",
+    paragraphs = [
+        "Founded in 1982, we've been serving our community with professional and reliable services for over four decades.",
+        "Our team of experienced professionals is dedicated to delivering exceptional results on every project, no matter the size or complexity.",
+        "We believe in building long-term relationships with our clients based on trust, quality, and outstanding customer service."
+    ],
+    image,
+    imageAlt = "Company Image",
+    reverse = false
+} = Astro.props;
+---
+
+<section class="py-16 px-6 max-w-6xl mx-auto">
+    <div class={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${reverse ? 'md:grid-flow-col-dense' : ''}`}>
+        <!-- Text Content -->
+        <div class={reverse ? 'md:col-start-2' : ''}>
+            <h2 class="heading-h2 font-heading font-bold mb-6 text-primary">
+                {title}
+            </h2>
+            {paragraphs.map((paragraph) => (
+                <p class="text-secondary mb-4 leading-relaxed last:mb-0">
+                    {paragraph}
+                </p>
+            ))}
+        </div>
+        
+        <!-- Image -->
+        <div class={reverse ? 'md:col-start-1' : ''}>
+            {image ? (
+                <img 
+                    src={image} 
+                    alt={imageAlt}
+                    class="w-full h-96 object-cover rounded-lg shadow-lg"
+                />
+            ) : (
+                <div class="bg-primary h-96 flex items-center justify-center text-white rounded-lg shadow-lg">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                        </svg>
+                        <p class="text-center opacity-75">{imageAlt}</p>
+                    </div>
+                </div>
+            )}
+        </div>
+    </div>
+</section>
