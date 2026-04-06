@@ -12,11 +12,11 @@ interface Props {
 
 const {
     companyName = "BUILDPRO",
-    tagline = "Professional services for all your construction and trade needs since 1982.",
-    phone = "+9901253789",
-    email = "hello@yourcompany.com",
-    address = "123 Lake side street, new york",
-    hours = "8:00am to 9:00pm (Sun: Closed)",
+    tagline = "High-converting websites built for contractors who want to dominate their local market.",
+    phone = "(555) 123-4567",
+    email = "info@buildpro.com",
+    address = "123 Brooklyn New Street, USA",
+    hours = "8:00 AM to 9:00 PM",
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
@@ -88,7 +88,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                         {companyName}
                     </h3>
                 </div>
-                <p class="text-gray-400 text-base leading-relaxed mb-6">
+                <p class="text-gray-400 text-base leading-relaxed mb-6 font-body">
                     {tagline}
                 </p>
 
@@ -107,7 +107,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                     </svg>
                     <div>
                         <p
-                            class="text-xs text-white/80 uppercase tracking-wide"
+                            class="text-xs text-white/80 uppercase tracking-wide font-body"
                         >
                             Get a Free Quote
                         </p>
@@ -125,35 +125,35 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                     <li>
                         <a
                             href="/reviews"
-                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            class="text-gray-400 hover:text-accent transition-colors text-base font-body"
                             >Reviews</a
                         >
                     </li>
                     <li>
                         <a
                             href="/our-work"
-                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            class="text-gray-400 hover:text-accent transition-colors text-base font-body"
                             >Our Work</a
                         >
                     </li>
                     <li>
                         <a
                             href="/trades-we-serve"
-                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            class="text-gray-400 hover:text-accent transition-colors text-base font-body"
                             >Trades We Serve</a
                         >
                     </li>
                     <li>
                         <a
                             href="/what-we-do"
-                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            class="text-gray-400 hover:text-accent transition-colors text-base font-body"
                             >What We Do</a
                         >
                     </li>
                     <li>
                         <a
                             href="/contact"
-                            class="text-gray-400 hover:text-accent transition-colors text-base"
+                            class="text-gray-400 hover:text-accent transition-colors text-base font-body"
                             >Contact</a
                         >
                     </li>
@@ -169,7 +169,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                             <li>
                                 <a
                                     href={`/trades-we-serve/${trade.data.slug}`}
-                                    class="text-gray-400 hover:text-accent transition-colors text-base"
+                                    class="text-gray-400 hover:text-accent transition-colors text-base font-body"
                                 >
                                     {trade.data.name}
                                 </a>
@@ -194,12 +194,12 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                                     class="w-16 h-16 object-cover"
                                 />
                                 <div>
-                                    <p class="text-xs text-accent uppercase mb-1">
+                                    <p class="text-xs text-accent uppercase mb-1 font-body">
                                         {update.type === "trade"
                                             ? "New Trade"
                                             : "New Template"}
                                     </p>
-                                    <p class="text-base text-gray-300 group-hover:text-accent transition-colors line-clamp-2">
+                                    <p class="text-base text-gray-300 group-hover:text-accent transition-colors line-clamp-2 font-body">
                                         {update.title}
                                     </p>
                                 </div>
@@ -225,7 +225,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                         </svg>
                         <a
                             href={`mailto:${email}`}
-                            class="text-gray-400 hover:text-accent transition-colors text-base break-words"
+                            class="text-gray-400 hover:text-accent transition-colors text-base break-words font-body"
                             >{email}</a
                         >
                     </div>
@@ -240,7 +240,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                                 d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
                             ></path>
                         </svg>
-                        <p class="text-gray-400 text-base break-words">
+                        <p class="text-gray-400 text-base break-words font-body">
                             {address}
                         </p>
                     </div>
@@ -255,7 +255,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                                 d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
                             ></path>
                         </svg>
-                        <p class="text-gray-400 text-base">{hours}</p>
+                        <p class="text-gray-400 text-base font-body">{hours}</p>
                     </div>
                 </div>
             </div>
@@ -268,10 +268,10 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
             class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3"
         >
             <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-                <p class="text-gray-500 text-sm text-center md:text-left">
+                <p class="text-gray-500 text-[13px] text-center md:text-left font-body">
                     © All Copyright {currentYear} by {companyName}
                 </p>
-                <div class="flex items-center gap-3 text-sm">
+                <div class="flex items-center gap-3 text-[13px] font-body">
                     <span class="text-gray-600 hidden md:inline">|</span>
                     <a
                         href="/privacy"

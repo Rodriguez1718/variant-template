@@ -50,7 +50,7 @@ function getTradeIcon(tradeName: string) {
     <div class="logo-section flex items-center h-full px-4 relative z-30 w-80">
       <a
         href="/"
-        class="flex items-center text-primary hover:opacity-80 transition-opacity duration-300"
+        class="flex items-center text-primary transition-opacity duration-300"
       >
         <img
           src="/images/logo.avif"
@@ -90,7 +90,7 @@ function getTradeIcon(tradeName: string) {
               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
               ></path>
             </svg>
-            <p class="text-white text-base">needhelp@company.com</p>
+            <p class="text-white text-base font-body">info@buildpro.com</p>
           </div>
           <div class="flex items-center gap-2">
             <svg
@@ -103,7 +103,19 @@ function getTradeIcon(tradeName: string) {
                 d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                 clip-rule="evenodd"></path>
             </svg>
-            <p class="text-white text-base">123 Brooklyn New Street, USA</p>
+            <p class="text-white text-base font-body">123 Brooklyn New Street, USA</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-5 h-5 text-accent"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+              ></path>
+            </svg>
+            <p class="text-white text-base font-body">(555) 123-4567</p>
           </div>
         </div>
         <!-- Get a Free Quote - Large screens (1280px+) with absolute positioning -->
@@ -152,20 +164,20 @@ function getTradeIcon(tradeName: string) {
         >
           <a
             href="/reviews"
-            class="text-m font-medium hover:text-orange-400 transition-colors uppercase tracking-wide"
+            class="text-m font-body font-semibold hover:text-orange-400 transition-colors uppercase tracking-wide"
           >
             REVIEWS
           </a>
           <a
             href="/our-work"
-            class="text-m font-medium hover:text-orange-400 transition-colors uppercase tracking-wide"
+            class="text-m font-body font-semibold hover:text-orange-400 transition-colors uppercase tracking-wide"
           >
             OUR WORK
           </a>
           <div class="relative group">
             <a
               href="/trades-we-serve"
-              class="text-m font-medium hover:text-orange-400 transition-colors uppercase tracking-wide flex items-center"
+              class="text-m font-body font-semibold hover:text-orange-400 transition-colors uppercase tracking-wide flex items-center"
             >
               TRADES WE SERVE
               <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -200,10 +212,10 @@ function getTradeIcon(tradeName: string) {
                         />
                       </svg>
                       <div>
-                        <div class="font-medium text-[#0A1931]">
+                        <div class="font-body font-medium text-[#0A1931]">
                           {trade.data.name}
                         </div>
-                        <div class="text-base text-gray-500">
+                        <div class="font-body text-base text-gray-500">
                           {trade.data.tagline}
                         </div>
                       </div>
@@ -215,13 +227,13 @@ function getTradeIcon(tradeName: string) {
           </div>
           <a
             href="/what-we-do"
-            class="text-m font-medium hover:text-orange-400 transition-colors uppercase tracking-wide"
+            class="text-m font-body font-semibold hover:text-orange-400 transition-colors uppercase tracking-wide"
           >
             WHAT WE DO
           </a>
           <a
             href="/about"
-            class="text-m font-medium hover:text-orange-400 transition-colors uppercase tracking-wide"
+            class="text-m font-body font-semibold hover:text-orange-400 transition-colors uppercase tracking-wide"
           >
             ABOUT
           </a>
@@ -342,7 +354,7 @@ function getTradeIcon(tradeName: string) {
                   />
                 </svg>
                 <div>
-                  <div class="font-medium text-sm">{trade.data.name}</div>
+                  <div class="font-body font-medium text-sm">{trade.data.name}</div>
                 </div>
               </a>
             ))
