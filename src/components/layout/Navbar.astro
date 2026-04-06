@@ -375,25 +375,34 @@ function getTradeIcon(tradeName: string) {
 </nav>
 
 <style>
-  /* Compact navbar styles */
+  /* Navbar transition animations */
   .navbar-compact .contact-row {
     display: none;
   }
   
+  .contact-row {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
   .navbar-compact {
     height: 3rem;
+    transition: height 0.4s ease-in-out;
   }
   
   .navbar-compact .desktop-content {
     flex-direction: row;
     align-items: center;
     height: 3rem;
+    transition: all 0.4s ease-in-out;
   }
   
   .navbar-compact .logo-section {
     height: 3rem;
     width: auto;
     min-width: 200px;
+    transition: all 0.3s ease-in-out;
   }
   
   .navbar-compact .nav-section {
@@ -402,14 +411,22 @@ function getTradeIcon(tradeName: string) {
     padding: 0;
     flex: 1;
     display: flex !important;
+    transition: all 0.3s ease-in-out;
   }
   
   .navbar-compact .nav-section .nav-links {
     margin-left: 2rem;
+    transition: margin-left 0.3s ease-in-out;
   }
   
   .navbar-compact .right-content {
     display: none;
+  }
+  
+  .right-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
   
   /* Hide background elements in compact mode */
@@ -419,11 +436,23 @@ function getTradeIcon(tradeName: string) {
     display: none;
   }
   
-  /* Smooth transitions */
-  .navbar-compact .desktop-content,
-  .navbar-compact .logo-section,
-  .navbar-compact .nav-section {
+  .desktop-bg,
+  .contact-bg,
+  .nav-bg {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Smooth transitions for all navbar elements */
+  .desktop-content,
+  .logo-section,
+  .nav-section {
     transition: all 0.3s ease-in-out;
+  }
+  
+  /* Enhanced navbar transform animation */
+  #navbar {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s ease-in-out;
   }
   
   /* Mobile compact state - same as normal for mobile */
@@ -464,9 +493,18 @@ function getTradeIcon(tradeName: string) {
       const currentScrollY = window.scrollY;
       
       if (currentScrollY < 10) {
-        // At top - show full navbar
+        // At top - show full navbar with delay for smooth transition
         navbar.style.transform = "translateY(0)";
-        navbar.classList.remove("navbar-compact");
+        
+        // Add a small delay before removing compact class for smoother animation
+        if (navbar.classList.contains("navbar-compact")) {
+          setTimeout(() => {
+            navbar.classList.remove("navbar-compact");
+          }, 100);
+        } else {
+          navbar.classList.remove("navbar-compact");
+        }
+        
         console.log('At top - full navbar');
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down - hide navbar completely (keep current state while hiding)
@@ -487,8 +525,8 @@ function getTradeIcon(tradeName: string) {
         }
       } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
         // Scrolling up (but not at top) - show compact navbar
-        navbar.style.transform = "translateY(0)";
         navbar.classList.add("navbar-compact");
+        navbar.style.transform = "translateY(0)";
         console.log('Scrolling up - compact navbar');
       }
       
