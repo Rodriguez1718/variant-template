@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/layout/Hero2.astro";
+import About from "../components/layout/About.astro";
 ---
 
 <BaseLayout
@@ -12,36 +13,7 @@ import Hero2 from "../components/layout/Hero2.astro";
         breadcrumbs={[{ label: "HOME", href: "/" }, { label: "ABOUT US" }]}
     />
 
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2
-                    class="font-heading font-bold text-4xl mb-6 text-[var(--color-primary)]"
-                >
-                    Our Story
-                </h2>
-                <p class="text-gray-600 mb-4 leading-relaxed">
-                    Founded in 1982, we've been serving our community with
-                    professional and reliable services for over four decades.
-                </p>
-                <p class="text-gray-600 mb-4 leading-relaxed">
-                    Our team of experienced professionals is dedicated to
-                    delivering exceptional results on every project, no matter
-                    the size or complexity.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    We believe in building long-term relationships with our
-                    clients based on trust, quality, and outstanding customer
-                    service.
-                </p>
-            </div>
-            <div
-                class="bg-[var(--color-primary)] h-96 flex items-center justify-center text-white"
-            >
-                <p class="text-center">Company Image</p>
-            </div>
-        </div>
-    </section>
+    <About />
 
     <section class="py-16 px-6 bg-background">
         <div class="max-w-6xl mx-auto">
@@ -50,39 +22,73 @@ import Hero2 from "../components/layout/Hero2.astro";
                     Our Mission
                 </h2>
                 <p class="text-xl font-body text-gray-600 max-w-5xl mx-auto">
-                    We're committed to delivering excellence through these guiding principles
+                    We're committed to delivering excellence through these
+                    guiding principles
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 shadow-lg">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
-                            <span class="text-2xl font-heading font-bold text-white">1</span>
+                        <div
+                            class="w-12 h-12 bg-accent flex items-center justify-center shrink-0"
+                        >
+                            <span
+                                class="text-2xl font-heading font-bold text-white"
+                                >1</span
+                            >
                         </div>
-                        <h3 class="text-xl font-heading font-bold text-primary">Empower Contractors</h3>
+                        <h3 class="text-xl font-heading font-bold text-primary">
+                            Empower Contractors
+                        </h3>
                     </div>
-                    <p class="font-body text-gray-600">We provide contractors with professional digital tools that help them grow their businesses and reach more customers effectively.</p>
+                    <p class="font-body text-gray-600">
+                        We provide contractors with professional digital tools
+                        that help them grow their businesses and reach more
+                        customers effectively.
+                    </p>
                 </div>
 
                 <div class="bg-white p-8 shadow-lg">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
-                            <span class="text-2xl font-heading font-bold text-white">2</span>
+                        <div
+                            class="w-12 h-12 bg-accent flex items-center justify-center shrink-0"
+                        >
+                            <span
+                                class="text-2xl font-heading font-bold text-white"
+                                >2</span
+                            >
                         </div>
-                        <h3 class="text-xl font-heading font-bold text-primary">Drive Results</h3>
+                        <h3 class="text-xl font-heading font-bold text-primary">
+                            Drive Results
+                        </h3>
                     </div>
-                    <p class="font-body text-gray-600">Every template we create is designed with conversion in mind, helping our clients generate more leads and close more deals.</p>
+                    <p class="font-body text-gray-600">
+                        Every template we create is designed with conversion in
+                        mind, helping our clients generate more leads and close
+                        more deals.
+                    </p>
                 </div>
 
                 <div class="bg-white p-8 shadow-lg">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
-                            <span class="text-2xl font-heading font-bold text-white">3</span>
+                        <div
+                            class="w-12 h-12 bg-accent flex items-center justify-center shrink-0"
+                        >
+                            <span
+                                class="text-2xl font-heading font-bold text-white"
+                                >3</span
+                            >
                         </div>
-                        <h3 class="text-xl font-heading font-bold text-primary">Build Trust</h3>
+                        <h3 class="text-xl font-heading font-bold text-primary">
+                            Build Trust
+                        </h3>
                     </div>
-                    <p class="font-body text-gray-600">We create lasting partnerships by delivering quality work, transparent pricing, and exceptional support to every client we serve.</p>
+                    <p class="font-body text-gray-600">
+                        We create lasting partnerships by delivering quality
+                        work, transparent pricing, and exceptional support to
+                        every client we serve.
+                    </p>
                 </div>
             </div>
         </div>
