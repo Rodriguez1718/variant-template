@@ -61,16 +61,12 @@ const stats = [
         tradeDescription={trade.hoverDescription}
     />
 
-    <div class="px-6 pb-20 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <CTA
-                title="Ready to Get Started?"
-                subtitle={`Take your ${trade.name.toLowerCase()} business online with a professional website. Contact us today for a free consultation.`}
-                primaryCtaText="Get Free Quote"
-                primaryCtaLink="/contact"
-                secondaryCtaText="Browse Templates"
-                secondaryCtaLink="/our-work"
-            />
-        </div>
-    </div>
+    <CTA
+        title="Ready to Get Started?"
+        subtitle={`Take your ${trade.name.toLowerCase()} business online with a professional website. Contact us today for a free consultation.`}
+        primaryCtaText="Get Free Quote"
+        primaryCtaLink="/contact"
+        secondaryCtaText="Browse Templates"
+        secondaryCtaLink="/our-work"
+    />
 </BaseLayout>
