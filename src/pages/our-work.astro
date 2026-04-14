@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/layout/Hero2.astro";
 import TradeTemplates from "../components/layout/TradeTemplates.astro";
 import TemplateFeatures from "../components/layout/TemplateFeatures.astro";
+import CTA from "../components/layout/CTA.astro";
 import { getCollection } from "astro:content";
 
 // Get all templates and trades
@@ -39,4 +40,5 @@ const tradeData = sortedTrades.map((trade) => {
 
     <!-- Why Choose Our Templates -->
     <TemplateFeatures />
+    <CTA />
 </BaseLayout>
