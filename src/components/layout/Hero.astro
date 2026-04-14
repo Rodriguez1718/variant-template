@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-    backgroundImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&q=80",
+    backgroundImage = "https://33hb9xdnm4.ucarecd.net/4e5d12ee-78c2-4e28-b857-0279426529ca/photo1460925895917afdab827c52f",
     pretitle = "BUILD YOUR INDUSTRY WITH US",
     title = "INDUSTRY",
     subtitle = "Providing Reliable Factory Services",
@@ -21,9 +21,18 @@ const {
 ---
 
 <section
-    class="relative w-full h-screen flex items-center justify-center overflow-hidden"
-    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+    class="hero-section relative w-full h-screen flex items-center justify-center overflow-hidden"
 >
+    <!-- Background Image (Desktop only) -->
+    <div
+        class="hero-bg-image absolute inset-0 hidden md:block"
+        style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+    >
+    </div>
+
+    <!-- Solid Background with Texture (Mobile only) -->
+    <div class="hero-bg-mobile absolute inset-0 md:hidden bg-primary"></div>
+
     <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
 
@@ -71,6 +80,25 @@ const {
     /* Ensure sharp edges for button */
     a {
         border-radius: 0 !important;
+    }
+
+    /* Mobile Background Texture */
+    .hero-bg-mobile {
+        background-image:
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            ),
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
     }
 
     /* Pulsing animation for play button */
