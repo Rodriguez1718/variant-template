@@ -2,35 +2,29 @@
 import Button from "../ui/Button.astro";
 ---
 
-<section class="pt-28 pb-20 px-6 bg-white font-body overflow-hidden">
-  <div class="max-w-7xl mx-auto overflow-hidden">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- Left side - Images -->
-      <div class="relative w-full max-w-[500px] mx-auto lg:mx-0">
-        <!-- Main image container -->
-        <div class="relative w-full aspect-[4/5] max-w-[360px]">
+<section class="pt-28 pb-20 px-6 bg-white font-body">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+      <div class="relative h-full flex items-stretch">
+        <div class="relative w-[360px]">
           <img
-            id="about-image-1"
             src="https://33hb9xdnm4.ucarecd.net/f6f07273-9c74-42aa-a005-5574c705c544/photo1499951360447b19be8fe80f5"
             alt="Web development workspace"
             class="w-full h-full object-cover shadow-xl"
           />
         </div>
 
-        <!-- Second image - desktop only -->
-        <div class="hidden md:block absolute top-0 right-0 w-[240px] aspect-[4/5] max-h-[350px]">
+        <div class="absolute top-0 right-[5px] w-60">
           <img
-            id="about-image-2"
             src="https://33hb9xdnm4.ucarecd.net/ba687119-1966-4ee3-ad91-11118f293349/photo1522071820081009f0129c71c"
             alt="Digital team collaboration"
-            class="w-full h-full object-cover shadow-xl"
+            class="w-full h-[350px] object-cover shadow-xl hidden md:block"
           />
         </div>
 
-        <!-- Stats Card - desktop only, positioned at bottom right -->
+        <!-- Stats Card - Hidden on mobile, shown as overlay on larger screens -->
         <div
-          id="about-stats-card"
-          class="hidden md:block absolute bottom-0 right-0 bg-white shadow-xl p-5 w-[240px] z-10"
+          class="absolute bottom-0 right-[5px] bg-white shadow-xl p-5 w-60 h-[240px] hidden sm:block"
         >
           <div class="text-center mb-2">
             <h3 class="text-lg font-bold text-primary">Customer Rating</h3>
@@ -83,15 +77,15 @@ import Button from "../ui/Button.astro";
           </div>
         </div>
 
-        <!-- Mobile Stats Card - shown below images on mobile -->
-        <div id="about-mobile-stats" class="md:hidden mt-6 bg-white shadow-xl p-6 rounded-lg">
-          <div class="text-center mb-3">
+        <!-- Mobile Stats Card - Shown below image on mobile only -->
+        <div class="sm:hidden bg-white shadow-xl p-6 rounded-lg">
+          <div class="text-center pt-2 mb-3">
             <h3 class="text-lg font-bold text-primary">Customer Rating</h3>
           </div>
 
           <div class="w-full h-px mb-3 bg-primary opacity-20"></div>
 
-          <div class="text-center">
+          <div class="text-center mt-4">
             <div class="flex items-center justify-center gap-1 mb-1">
               <svg
                 class="w-7 h-7 text-accent"
@@ -102,12 +96,12 @@ import Button from "../ui/Button.astro";
                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                 ></path>
               </svg>
-              <span class="text-4xl font-bold text-primary leading-none"
+              <span class="text-5xl font-bold text-primary leading-none"
                 >4.9</span
               >
             </div>
             <p class="text-base text-gray-600 mb-3 text-center">
-              (15k+ Reviews)
+              (500+ Reviews)
             </p>
 
             <!-- Overlapping Profile Icons -->
@@ -137,20 +131,19 @@ import Button from "../ui/Button.astro";
         </div>
       </div>
 
-      <!-- Right side - Content -->
-      <div id="about-content" class="w-full">
-        <h2 id="about-title" class="heading-h2 font-bold mb-4 leading-tight text-primary">
+      <div>
+        <h2 class="heading-h2 font-bold mb-4 leading-tight -ml-1 text-primary">
           Digital Success<br />
           For Contractors<br />
           Who Dominate
         </h2>
 
-        <p id="about-description" class="text-xl text-gray-600 mb-8 leading-relaxed">
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-[600px]">
           We build high-converting websites for contractors who want to dominate
           their local market. Quality websites that work as hard as you do.
         </p>
 
-        <div id="about-stats" class="grid grid-cols-2 gap-8 mb-8 max-w-[500px]">
+        <div class="grid grid-cols-2 gap-8 mb-8 max-w-[500px]">
           <div class="text-left">
             <div class="text-5xl font-bold mb-2 text-text">10+</div>
             <p class="text-base text-gray-600">Years of Experience</p>
@@ -162,7 +155,7 @@ import Button from "../ui/Button.astro";
           </div>
         </div>
 
-        <div id="about-button" class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-4">
           <Button variant="accent" size="md" href="/about" icon={false}>
             Read More
           </Button>
@@ -173,45 +166,17 @@ import Button from "../ui/Button.astro";
 </section>
 
 <style>
+  button:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
   .counter {
     display: inline-block;
-  }
-  
-  /* Prevent overflow from button hover effects */
-  section {
-    overflow-x: hidden;
   }
 </style>
 
 <script>
-  import { fadeInOnScroll } from '../../scripts/fadeInAnimation.js';
-  
   document.addEventListener("DOMContentLoaded", () => {
-    // Add animations
-    fadeInOnScroll(['about-image-1'], {
-      direction: 'left',
-      trigger: 'top 85%'
-    });
-    
-    fadeInOnScroll(['about-image-2'], {
-      direction: 'right',
-      trigger: 'top 85%',
-      delay: 0.2
-    });
-    
-    fadeInOnScroll(['about-stats-card', 'about-mobile-stats'], {
-      direction: 'up',
-      trigger: 'top 85%',
-      delay: 0.4
-    });
-    
-    fadeInOnScroll(['about-title', 'about-description', 'about-stats', 'about-button'], {
-      stagger: 0.2,
-      direction: 'up',
-      trigger: 'top 85%'
-    });
-
-    // Counter animation
     const counters = document.querySelectorAll(".counter, .counter-mobile");
 
     counters.forEach((counter) => {
