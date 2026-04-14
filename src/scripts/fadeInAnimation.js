@@ -284,5 +284,5 @@ document.addEventListener('DOMContentLoaded', () => {
       ...presets[preset],
       trigger: trigger
     });
-  });
+  });  
 });
