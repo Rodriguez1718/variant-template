@@ -81,7 +81,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                 <div class="flex items-center gap-3 mb-4">
                     <img
                         src="/images/logo.avif"
-                        alt={companyName}
+                        alt={`${companyName} Logo`}
                         class="w-10 h-10 object-contain"
                     />
                     <p class="text-xl font-heading font-bold">
@@ -95,8 +95,10 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                 </p>
 
                 <!-- CTA Button -->
-                <div
+                <a
+                    href="contact"
                     class="flex items-center gap-3 bg-accent px-4 py-3 hover:bg-[#d97706] transition-colors cursor-pointer"
+                    aria-label={`Call us at ${phone} for a free quote`}
                 >
                     <svg
                         class="w-5 h-5 text-white"
@@ -117,7 +119,7 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                             {phone}
                         </p>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Links -->
@@ -189,10 +191,14 @@ if (tradeUpdates.length > 1 && updates.length < 2) {
                 <div class="space-y-3">
                     {
                         updates.map((update) => (
-                            <a href={update.link} class="flex gap-3 group">
+                            <a
+                                href={update.link}
+                                class="flex gap-3 group"
+                                aria-label={update.title}
+                            >
                                 <img
                                     src={update.image}
-                                    alt={update.title}
+                                    alt={`${update.type === "trade" ? "Trade service" : "Website template"} preview`}
                                     class="w-16 h-16 object-cover"
                                 />
                                 <div>

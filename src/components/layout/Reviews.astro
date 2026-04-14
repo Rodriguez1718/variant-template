@@ -93,29 +93,34 @@ const testimonials = [
       class="relative flex items-center justify-center py-20 px-4 overflow-hidden"
     >
       <div
-        class="carousel-wrapper w-full max-w-7xl mx-auto relative overflow-hidden h-[600px]"
+        class="carousel-wrapper w-full max-w-7xl mx-auto relative overflow-hidden h-150"
       >
         <div class="carousel-track w-full h-full relative">
           {
             testimonials.map((testimonial, index) => (
               <div
-                class="carousel-card bg-white shadow-2xl p-8 flex flex-col w-full md:w-[380px] min-h-[500px] absolute transition-all duration-500 ease-in-out hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm md:max-w-none"
+                class="carousel-card bg-white shadow-2xl p-8 flex flex-col w-full md:w-95 min-h-125 absolute transition-all duration-500 ease-in-out hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm md:max-w-none"
                 data-index={index}
               >
-                <div class="flex gap-2 mb-6">
+                <div
+                  class="flex gap-2 mb-6"
+                  aria-label={`${testimonial.rating} star rating`}
+                >
                   {Array.from({ length: testimonial.rating }).map(() => (
-                    <span class="text-[28px] text-accent">★</span>
+                    <span class="text-[28px] text-accent" aria-hidden="true">
+                      ★
+                    </span>
                   ))}
                 </div>
 
-                <blockquote class="text-base leading-[1.8] text-gray-700 mb-8 flex-grow">
+                <blockquote class="text-base leading-[1.8] text-gray-700 mb-8 grow">
                   "{testimonial.text}"
                 </blockquote>
 
                 <div class="flex items-center gap-4 mt-auto">
                   <img
                     src={testimonial.image}
-                    alt={testimonial.name}
+                    alt={`${testimonial.name}, ${testimonial.role}`}
                     class="w-14 h-14 rounded-full object-cover shrink-0"
                   />
                   <div>

@@ -18,11 +18,11 @@ const { name, slug, image, templateCount } = Astro.props;
     <div class="relative h-64 overflow-hidden">
         <img
             src={image}
-            alt={name}
+            alt={`${name} - Professional website templates and services`}
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div
-            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+            class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"
         >
         </div>
         <div class="absolute bottom-0 left-0 right-0 p-6">
@@ -43,6 +43,7 @@ const { name, slug, image, templateCount } = Astro.props;
             size="md"
             icon={false}
             class="w-full text-center"
+            aria-label={`View ${name} templates`}
         >
             View Templates
         </Button>

@@ -56,10 +56,11 @@ function getTradeIcon(tradeName: string) {
       <a
         href="/"
         class="flex items-center text-primary transition-opacity duration-300"
+        aria-label="BUILDPRO Home"
       >
         <img
           src="/images/logo.avif"
-          alt="BUILDPRO"
+          alt="BUILDPRO Logo"
           class="w-10 h-10 object-contain mr-2"
         />
         <span
@@ -173,7 +174,7 @@ function getTradeIcon(tradeName: string) {
       >
         <!-- Gray background extending from logo area to right edge -->
         <div
-          class="absolute inset-y-0 bg-[var(--color-primary)] hidden lg:block"
+          class="absolute inset-y-0 bg-(--color-primary) hidden lg:block"
           style="left: calc(-100% - 2rem); right: calc(-100vw + 100%); width: calc(200vw + 100% + 2rem);"
         >
         </div>
@@ -271,6 +272,7 @@ function getTradeIcon(tradeName: string) {
         href="/contact"
         class="compact-quote-btn hidden absolute inset-y-0 right-0 bg-accent hover:bg-[#d97706] h-full items-center transition-colors duration-300 cursor-pointer z-50"
         style="width: calc(50vw - 50% + 20rem); right: calc(-50vw + 50%); clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 3% 100%);"
+        aria-label="Get a free quote"
       >
         <div class="flex items-center h-full relative z-10 pointer-events-none">
           <p
@@ -289,11 +291,15 @@ function getTradeIcon(tradeName: string) {
   >
     <!-- Mobile Logo -->
     <div class="flex items-center min-w-0 flex-1 mr-2">
-      <a href="/" class="flex items-center text-black min-w-0">
+      <a
+        href="/"
+        class="flex items-center text-black min-w-0"
+        aria-label="BUILDPRO Home"
+      >
         <img
           src="/images/logo.avif"
-          alt="BUILDPRO"
-          class="w-6 h-6 sm:w-8 sm:h-8 object-contain mr-2 sm:mr-3 flex-shrink-0"
+          alt="BUILDPRO Logo"
+          class="w-6 h-6 sm:w-8 sm:h-8 object-contain mr-2 sm:mr-3 shrink-0"
         />
         <span
           class="text-lg sm:text-xl font-heading font-bold tracking-wider text-primary uppercase truncate"
@@ -306,7 +312,9 @@ function getTradeIcon(tradeName: string) {
     <button
       type="button"
       id="mobile-menu-button"
-      class="text-white hover:text-accent focus:outline-none flex-shrink-0 p-1"
+      class="text-white hover:text-accent focus:outline-none shrink-0 p-1"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
     >
       <svg
         id="hamburger-icon"
@@ -314,6 +322,7 @@ function getTradeIcon(tradeName: string) {
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        aria-hidden="true"
       >
         <path
           stroke-linecap="round"
@@ -327,6 +336,7 @@ function getTradeIcon(tradeName: string) {
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        aria-hidden="true"
       >
         <path
           stroke-linecap="round"
@@ -361,6 +371,8 @@ function getTradeIcon(tradeName: string) {
         <button
           id="mobile-trades-button"
           class="flex items-center justify-between w-full text-secondary hover:text-accent font-medium py-2 transition-colors"
+          aria-label="Toggle trades menu"
+          aria-expanded="false"
         >
           Trades We Serve
           <svg
@@ -368,6 +380,7 @@ function getTradeIcon(tradeName: string) {
             class="ml-1 h-4 w-4 transition-transform duration-200"
             fill="currentColor"
             viewBox="0 0 20 20"
+            aria-hidden="true"
           >
             <path
               fill-rule="evenodd"
@@ -478,6 +491,7 @@ function getTradeIcon(tradeName: string) {
 
   .navbar-compact .compact-quote-btn {
     display: flex !important;
+    align-items: center;
   }
 
   .navbar-compact .right-content {
@@ -614,11 +628,13 @@ function getTradeIcon(tradeName: string) {
           mobileMenu.classList.remove("hidden");
           hamburgerIcon.classList.add("hidden");
           closeIcon.classList.remove("hidden");
+          mobileMenuButton.setAttribute("aria-expanded", "true");
         } else {
           // Hide menu
           mobileMenu.classList.add("hidden");
           hamburgerIcon.classList.remove("hidden");
           closeIcon.classList.add("hidden");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
 
           // Also close trades dropdown when closing main menu
           if (mobileTradesDropdown && mobileTradesArrow) {
@@ -638,10 +654,12 @@ function getTradeIcon(tradeName: string) {
           // Show dropdown
           mobileTradesDropdown.classList.remove("hidden");
           mobileTradesArrow.classList.add("rotate-180");
+          mobileTradesButton.setAttribute("aria-expanded", "true");
         } else {
           // Hide dropdown
           mobileTradesDropdown.classList.add("hidden");
           mobileTradesArrow.classList.remove("rotate-180");
+          mobileTradesButton.setAttribute("aria-expanded", "false");
         }
       });
     }

@@ -21,12 +21,14 @@ const {
 ---
 
 <section
-    class="hero-section relative w-full h-[950px] flex items-center justify-center overflow-hidden -mt-29"
+    class="hero-section relative w-full h-237.5 flex items-center justify-center overflow-hidden -mt-29"
 >
     <!-- Background Image (Desktop only) -->
     <div
         class="hero-bg-image absolute inset-0 hidden md:block"
         style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+        role="img"
+        aria-label="Hero background showing construction and contracting work"
     >
     </div>
 
@@ -44,7 +46,6 @@ const {
                 <p
                     id="hero-pretitle"
                     class="text-subtitle font-heading font-bold uppercase tracking-[0.3em] text-white mb-6 opacity-90"
-                    role="doc-subtitle"
                 >
                     {pretitle}
                 </p>
@@ -81,7 +82,8 @@ const {
 
     <!-- Decorative Elements -->
     <div
-        class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/30 to-transparent"
+        class="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black/30 to-transparent"
+        aria-hidden="true"
     >
     </div>
 </section>
