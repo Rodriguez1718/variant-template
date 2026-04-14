@@ -80,20 +80,7 @@ const {
 </section>
 
 <script>
-  import { fadeInOnScroll } from "../../scripts/fadeInAnimation.js";
-
-  document.addEventListener("DOMContentLoaded", function() {
-    // Animate hero elements with staggered entrance
-    fadeInOnScroll(['hero-pretitle', 'hero-title', 'hero-subtitle', 'hero-cta'], {
-      trigger: 'top 90%',     // Trigger early since it's above the fold
-      duration: 0.8,
-      stagger: 0.3,           // 0.3s delay between each element
-      direction: 'up',
-      distance: 40,
-      ease: 'power2.out',
-      delay: 0.5              // Initial delay after page load
-    });
-  });
+  // Animation removed - gsap not installed
 </script>
 
 <style>

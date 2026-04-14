@@ -4,27 +4,27 @@ import Button from "../ui/Button.astro";
 
 <section class="pt-28 pb-20 px-6 bg-white font-body">
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-      <div class="relative h-full flex items-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch overflow-hidden">
+      <div class="relative h-full flex items-stretch overflow-hidden">
         <div class="relative w-[360px]">
           <img
-            src="https://33hb9xdnm4.ucarecd.net/f6f07273-9c74-42aa-a005-5574c705c544/photo1499951360447b19be8fe80f5"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
             alt="Web development workspace"
-            class="w-full h-full object-cover shadow-xl"
+            class="w-full h-full object-cover"
           />
         </div>
 
         <div class="absolute top-0 right-[5px] w-60">
           <img
-            src="https://33hb9xdnm4.ucarecd.net/ba687119-1966-4ee3-ad91-11118f293349/photo1522071820081009f0129c71c"
+            src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=600&q=80"
             alt="Digital team collaboration"
-            class="w-full h-[350px] object-cover shadow-xl hidden md:block"
+            class="w-full h-[350px] object-cover hidden md:block"
           />
         </div>
 
         <!-- Stats Card - Hidden on mobile, shown as overlay on larger screens -->
         <div
-          class="absolute bottom-0 right-[5px] bg-white shadow-xl p-5 w-60 h-[240px] hidden sm:block"
+          class="absolute bottom-0 right-[5px] bg-gray-50 p-5 w-60 h-[240px] hidden sm:block"
         >
           <div class="text-center mb-2">
             <h3 class="text-lg font-bold text-primary">Customer Rating</h3>
@@ -78,7 +78,7 @@ import Button from "../ui/Button.astro";
         </div>
 
         <!-- Mobile Stats Card - Shown below image on mobile only -->
-        <div class="sm:hidden bg-white shadow-xl p-6 rounded-lg">
+        <div class="sm:hidden bg-gray-50 p-6 rounded-lg">
           <div class="text-center pt-2 mb-3">
             <h3 class="text-lg font-bold text-primary">Customer Rating</h3>
           </div>
@@ -145,12 +145,16 @@ import Button from "../ui/Button.astro";
 
         <div class="grid grid-cols-2 gap-8 mb-8 max-w-[500px]">
           <div class="text-left">
-            <div class="text-5xl font-bold mb-2 text-text">10+</div>
+            <div class="text-4xl font-bold mb-2 text-text">
+              <span class="counter" data-target="10">0</span>+
+            </div>
             <p class="text-base text-gray-600">Years of Experience</p>
           </div>
 
           <div class="text-left border-l-2 border-gray-200 pl-8">
-            <div class="text-5xl font-bold mb-2 text-text">500+</div>
+            <div class="text-4xl font-bold mb-2 text-text">
+              <span class="counter" data-target="500">0</span>+
+            </div>
             <p class="text-base text-gray-600">Contractors Served</p>
           </div>
         </div>
@@ -177,11 +181,11 @@ import Button from "../ui/Button.astro";
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const counters = document.querySelectorAll(".counter, .counter-mobile");
-
-    counters.forEach((counter) => {
+    const counters = document.querySelectorAll(".counter");
+    
+    const animateCounter = (counter: Element) => {
       const target = parseInt(counter.getAttribute("data-target") || "0");
-      const duration = 1000; // 1 second (faster)
+      const duration = 2000; // 2 seconds
       const increment = target / (duration / 16); // 60fps
       let current = 0;
 
@@ -196,6 +200,19 @@ import Button from "../ui/Button.astro";
       };
 
       updateCounter();
-    });
+    };
+
+    // Create an Intersection Observer to trigger animation when visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          animateCounter(counter);
+          observer.unobserve(counter); // Only animate once
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
   });
 </script>
