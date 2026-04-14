@@ -78,7 +78,7 @@ const testimonials = [
 <section class="relative py-20 overflow-hidden bg-background">
   <div class="max-w-7xl mx-auto px-8 relative z-10 font-body">
     <!-- Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-5">
       <h2 class="heading-h2 font-bold mb-4">
         <span class="text-primary">What Our Clients Say</span>
       </h2>
@@ -90,18 +90,16 @@ const testimonials = [
 
     <!-- Carousel Container -->
     <div
-      class="relative flex items-center justify-center min-h-[500px] py-[60px] px-5"
+      class="relative flex items-center justify-center py-20 px-4 overflow-hidden"
     >
       <div
-        class="carousel-wrapper w-full max-w-6xl mx-auto relative overflow-visible"
+        class="carousel-wrapper w-full max-w-7xl mx-auto relative overflow-hidden h-[600px]"
       >
-        <div
-          class="carousel-track flex transition-transform duration-500 ease-in-out gap-8 justify-center items-center relative"
-        >
+        <div class="carousel-track w-full h-full relative">
           {
             testimonials.map((testimonial, index) => (
               <div
-                class="carousel-card flex-shrink-0 bg-white shadow-2xl p-8 flex flex-col w-[380px] min-h-[500px] absolute transition-all duration-500 ease-in-out hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] md:w-[380px] max-md:w-[280px]"
+                class="carousel-card bg-white shadow-2xl p-8 flex flex-col w-full md:w-[380px] min-h-[500px] absolute transition-all duration-500 ease-in-out hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm md:max-w-none"
                 data-index={index}
               >
                 <div class="flex gap-2 mb-6">
@@ -134,7 +132,7 @@ const testimonials = [
       </div>
 
       <button
-        class="carousel-prev absolute left-4 z-10 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 bg-white text-[#e63946] opacity-0 pointer-events-none"
+        class="carousel-prev absolute left-4 z-10 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 bg-white text-[#e63946] hidden"
         aria-label="Previous review"
       >
         <svg
@@ -152,7 +150,7 @@ const testimonials = [
       </button>
 
       <button
-        class="carousel-next absolute right-4 z-10 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 bg-white text-[#e63946] opacity-0 pointer-events-none"
+        class="carousel-next absolute right-4 z-10 rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 bg-white text-[#e63946] hidden"
         aria-label="Next review"
       >
         <svg
@@ -168,17 +166,6 @@ const testimonials = [
             d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
-    </div>
-
-    <div class="flex justify-center gap-2 mt-8 opacity-0 pointer-events-none">
-      {
-        testimonials.map((_, index) => (
-          <button
-            class={`carousel-dot w-3 h-3 rounded-full transition-all ${index === 0 ? "bg-primary" : "bg-secondary"}`}
-            aria-label={`Go to review ${index + 1}`}
-          />
-        ))
-      }
     </div>
   </div>
 </section>
@@ -224,22 +211,25 @@ const testimonials = [
         // Apply styles based on position
         if (position === 0) {
           // Center card
-          cardElement.style.transform = "translateX(0) scale(1)";
+          cardElement.style.transform = "translateX(0) translateY(0) scale(1)";
           cardElement.style.opacity = "1";
           cardElement.style.zIndex = "10";
         } else if (position === -1) {
           // Left card
-          cardElement.style.transform = "translateX(-110%) scale(0.85)";
+          cardElement.style.transform =
+            "translateX(-110%) translateY(0) scale(0.85)";
           cardElement.style.opacity = "0.7";
           cardElement.style.zIndex = "5";
         } else if (position === 1) {
           // Right card
-          cardElement.style.transform = "translateX(110%) scale(0.85)";
+          cardElement.style.transform =
+            "translateX(110%) translateY(0) scale(0.85)";
           cardElement.style.opacity = "0.7";
           cardElement.style.zIndex = "5";
         } else {
           // Hidden cards
-          cardElement.style.transform = "translateX(0) scale(0.7)";
+          cardElement.style.transform =
+            "translateX(0) translateY(0) scale(0.7)";
           cardElement.style.opacity = "0";
           cardElement.style.zIndex = "0";
         }
