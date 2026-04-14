@@ -492,9 +492,9 @@ function getTradeIcon(tradeName: string) {
     transition: all 0.3s ease-in-out;
   }
   
-  /* Enhanced navbar transform animation */
+  /* Enhanced navbar transform animation - simplified for sticky behavior */
   #navbar {
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s ease-in-out;
+    transition: height 0.4s ease-in-out;
   }
   
   /* Mobile compact state - same as normal for mobile */
@@ -524,9 +524,8 @@ function getTradeIcon(tradeName: string) {
     );
     const mobileTradesArrow = document.getElementById("mobile-trades-arrow");
 
-    // Navbar scroll behavior
+    // Navbar scroll behavior - simplified for sticky compact mode
     const navbar = document.getElementById("navbar");
-    let lastScrollY = window.scrollY;
     let ticking = false;
 
     function updateNavbar() {
@@ -535,25 +534,15 @@ function getTradeIcon(tradeName: string) {
       const currentScrollY = window.scrollY;
       
       if (currentScrollY < 10) {
-        // At top - show full navbar with delay for smooth transition
+        // At top - show full navbar
+        navbar.classList.remove("navbar-compact");
+        navbar.style.transform = "translateY(0)";
+      } else {
+        // Scrolled down - show compact navbar (always sticky)
+        navbar.classList.add("navbar-compact");
         navbar.style.transform = "translateY(0)";
         
-        // Add a small delay before removing compact class for smoother animation
-        if (navbar.classList.contains("navbar-compact")) {
-          setTimeout(() => {
-            navbar.classList.remove("navbar-compact");
-          }, 100);
-        } else {
-          navbar.classList.remove("navbar-compact");
-        }
-        
-        console.log('At top - full navbar');
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down - hide navbar completely (keep current state while hiding)
-        navbar.style.transform = "translateY(-100%)";
-        console.log('Scrolling down - hiding navbar');
-        
-        // Close mobile menu if open
+        // Close mobile menu if open when switching to compact
         if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
           mobileMenu.classList.add("hidden");
           if (hamburgerIcon && closeIcon) {
@@ -565,14 +554,8 @@ function getTradeIcon(tradeName: string) {
             mobileTradesArrow.classList.remove("rotate-180");
           }
         }
-      } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
-        // Scrolling up (but not at top) - show compact navbar
-        navbar.classList.add("navbar-compact");
-        navbar.style.transform = "translateY(0)";
-        console.log('Scrolling up - compact navbar');
       }
       
-      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
       ticking = false;
     }
 
@@ -586,9 +569,6 @@ function getTradeIcon(tradeName: string) {
     // Only add scroll listener if navbar exists
     if (navbar) {
       window.addEventListener("scroll", requestTick, { passive: true });
-      
-      // Also listen for touchmove on mobile
-      window.addEventListener("touchmove", requestTick, { passive: true });
       
       // Initial call to set correct state
       updateNavbar();

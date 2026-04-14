@@ -63,6 +63,7 @@ const {
         {
             breadcrumbs && breadcrumbs.length > 0 && (
                 <nav
+                    id="hero2-breadcrumbs"
                     class="flex items-center justify-center gap-2 mb-6"
                     aria-label="Breadcrumb"
                 >
@@ -111,6 +112,7 @@ const {
 
         <!-- Page Title -->
         <h1
+            id="hero2-title"
             class:list={[
                 "heading-h1 font-heading font-bold tracking-wider uppercase",
                 backgroundImage ? "text-white" : "text-primary"
@@ -126,3 +128,13 @@ const {
     >
     </div>
 </section>
+<script>
+  import { fadeInOnScroll } from '../../scripts/fadeInAnimation.js';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    fadeInOnScroll(['hero2-breadcrumbs', 'hero2-title'], {
+      stagger: 0.3,
+      direction: 'up'
+    });
+  });
+</script>
