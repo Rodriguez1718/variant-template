@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/layout/Hero2.astro";
 import TradeTemplates from "../components/layout/TradeTemplates.astro";
 import TemplateFeatures from "../components/layout/TemplateFeatures.astro";
+import CTA from "../components/layout/CTA.astro";
 import { getCollection } from "astro:content";
 
 // Get all templates and trades
@@ -39,4 +40,14 @@ const tradeData = sortedTrades.map((trade) => {
 
     <!-- Why Choose Our Templates -->
     <TemplateFeatures />
+
+    <!-- CTA Section -->
+    <CTA
+        title="Ready to Launch Your Website?"
+        subtitle="Choose a template that fits your trade and start building your online presence today"
+        primaryCtaText="Browse Templates"
+        primaryCtaLink="/trades-we-serve"
+        secondaryCtaText="Contact Us"
+        secondaryCtaLink="/contact"
+    />
 </BaseLayout>
