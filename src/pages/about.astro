@@ -5,6 +5,7 @@ import AboutSection from "../components/layout/About.astro";
 import Story from "../components/layout/Story.astro";
 import FAQ from "../components/layout/FAQ.astro";
 import Mission from "../components/layout/Mission.astro";
+import Reviews from "../components/layout/Reviews.astro";
 ---
 
 <BaseLayout
@@ -16,8 +17,9 @@ import Mission from "../components/layout/Mission.astro";
         breadcrumbs={[{ label: "HOME", href: "/" }, { label: "ABOUT US" }]}
     />
 
-    <AboutSection />
+    <!-- <AboutSection /> -->
     <Story />
     <Mission />
+    <Reviews />
     <FAQ />
 </BaseLayout>
