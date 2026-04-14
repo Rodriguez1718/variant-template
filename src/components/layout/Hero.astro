@@ -41,7 +41,7 @@ const {
         <!-- Pretitle -->
         {
             pretitle && (
-                <p class="text-subtitle font-heading font-bold uppercase tracking-[0.3em] text-white mb-6 opacity-90">
+                <p id="hero-pretitle" class="text-subtitle font-heading font-bold uppercase tracking-[0.3em] text-white mb-6 opacity-90">
                     {pretitle}
                 </p>
             )
@@ -49,6 +49,7 @@ const {
 
         <!-- Main Title -->
         <h1
+            id="hero-title"
             class="heading-h1 font-heading font-bold text-white mb-4 tracking-wider"
         >
             {title}
@@ -57,16 +58,18 @@ const {
         <!-- Subtitle -->
         {
             subtitle && (
-                <p class="text-subtitle font-body text-white mb-12 font-light tracking-wide">
+                <p id="hero-subtitle" class="text-subtitle font-body text-white mb-12 font-light tracking-wide">
                     {subtitle}
                 </p>
             )
         }
 
         <!-- CTA Button -->
-        <Button variant="accent" size="md" href={ctaLink} icon={false}>
-            {ctaText}
-        </Button>
+        <div id="hero-cta">
+            <Button variant="accent" size="md" href={ctaLink} icon={false}>
+                {ctaText}
+            </Button>
+        </div>
     </div>
 
     <!-- Decorative Elements -->
@@ -75,6 +78,23 @@ const {
     >
     </div>
 </section>
+
+<script>
+  import { fadeInOnScroll } from "../../scripts/fadeInAnimation.js";
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Animate hero elements with staggered entrance
+    fadeInOnScroll(['hero-pretitle', 'hero-title', 'hero-subtitle', 'hero-cta'], {
+      trigger: 'top 90%',     // Trigger early since it's above the fold
+      duration: 0.8,
+      stagger: 0.3,           // 0.3s delay between each element
+      direction: 'up',
+      distance: 40,
+      ease: 'power2.out',
+      delay: 0.5              // Initial delay after page load
+    });
+  });
+</script>
 
 <style>
     /* Ensure sharp edges for button */

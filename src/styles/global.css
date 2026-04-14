@@ -273,3 +273,18 @@
   width: 360%;
   background: var(--color-accent);
 }
+/* Prevent horizontal overflow from animations */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Animation performance optimizations */
+[data-fade-in] {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Ensure containers don't cause overflow */
+.container, .max-w-7xl, .max-w-6xl, .max-w-4xl {
+  overflow-x: hidden;
+}
