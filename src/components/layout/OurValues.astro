@@ -39,17 +39,17 @@ function getIcon(iconName: string) {
 }
 ---
 
-<section class="pt-28 pb-20 px-6 bg-[var(--color-primary)] overflow-x-hidden"> 
+<section class="pt-28 pb-20 px-6 bg-white overflow-x-hidden"> 
     <div class="max-w-7xl mx-auto overflow-x-hidden">
         <!-- Header -->
         <div class="text-center mb-16">
             <p id="values-badge" class="font-bold uppercase text-[var(--color-accent)] mb-4 tracking-wider">
                 Our Values
             </p>
-            <h2 id="values-title" class="heading-h2 font-bold text-white font-heading mb-6">
+            <h2 id="values-title" class="heading-h2 font-bold text-primary font-heading mb-6">
                 Why <span class="text-[var(--color-accent)]">Choose Us</span>
             </h2>
-            <p id="values-subtitle" class="text-gray-200 text-center font-body text-xl max-w-3xl mx-auto leading-relaxed">
+            <p id="values-subtitle" class="text-gray-600 text-center font-body text-xl max-w-3xl mx-auto leading-relaxed">
                 We're committed to delivering exceptional results through our core values and unwavering dedication to your success.
             </p>
         </div>
@@ -59,10 +59,10 @@ function getIcon(iconName: string) {
             {values.map((value, index) => (
                 <div 
                     id={`value-card-${index}`}
-                    class="bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+                    class="bg-gray-50 p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group border border-gray-200"
                 >
                     <!-- Icon -->
-                    <div class="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent transition-colors duration-300">
+                    <div class="w-16 h-16 bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent transition-colors duration-300">
                         <svg 
                             class="w-8 h-8 text-accent group-hover:text-white transition-colors duration-300" 
                             fill="none" 
