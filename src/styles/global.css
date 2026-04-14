@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  /* Color Palette */
+  /* Color Palette - Updated for better contrast */
   --color-text: #0b1119;
   --color-background: #f8fafc;
-  --color-primary: #304678;
-  --color-secondary: #48566a;
+  --color-primary: #1e3a5f;
+  /* Darker blue for better contrast (was #304678) */
+  --color-secondary: #3d4a5c;
+  /* Darker gray for better contrast (was #48566a) */
   --color-accent: #f59f0a;
 }
 
@@ -273,8 +275,10 @@
   width: 360%;
   background: var(--color-accent);
 }
+
 /* Prevent horizontal overflow from animations */
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -285,6 +289,9 @@ html, body {
 }
 
 /* Ensure containers don't cause overflow */
-.container, .max-w-7xl, .max-w-6xl, .max-w-4xl {
+.container,
+.max-w-7xl,
+.max-w-6xl,
+.max-w-4xl {
   overflow-x: hidden;
 }

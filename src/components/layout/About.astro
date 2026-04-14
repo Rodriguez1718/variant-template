@@ -4,7 +4,9 @@ import Button from "../ui/Button.astro";
 
 <section class="pt-28 pb-20 px-6 bg-white font-body">
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch overflow-hidden">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch overflow-hidden"
+    >
       <div class="relative h-full flex items-stretch overflow-hidden">
         <div class="relative w-[360px]">
           <img
@@ -27,7 +29,7 @@ import Button from "../ui/Button.astro";
           class="absolute bottom-0 right-[5px] bg-gray-50 p-5 w-60 h-[240px] hidden sm:block"
         >
           <div class="text-center mb-2">
-            <h3 class="text-lg font-bold text-primary">Customer Rating</h3>
+            <p class="text-lg font-bold text-[#1e3a5f]">Customer Rating</p>
           </div>
 
           <div class="w-full h-px mb-3 bg-primary opacity-20"></div>
@@ -80,7 +82,7 @@ import Button from "../ui/Button.astro";
         <!-- Mobile Stats Card - Shown below image on mobile only -->
         <div class="sm:hidden bg-gray-50 p-6 rounded-lg">
           <div class="text-center pt-2 mb-3">
-            <h3 class="text-lg font-bold text-primary">Customer Rating</h3>
+            <p class="text-lg font-bold text-[#1e3a5f]">Customer Rating</p>
           </div>
 
           <div class="w-full h-px mb-3 bg-primary opacity-20"></div>
@@ -132,7 +134,9 @@ import Button from "../ui/Button.astro";
       </div>
 
       <div>
-        <h2 class="heading-h2 font-bold mb-4 leading-tight -ml-1 text-primary">
+        <h2
+          class="heading-h2 font-bold mb-4 leading-tight -ml-1 text-[#1e3a5f]"
+        >
           Digital Success<br />
           For Contractors<br />
           Who Dominate
@@ -182,7 +186,7 @@ import Button from "../ui/Button.astro";
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const counters = document.querySelectorAll(".counter");
-    
+
     const animateCounter = (counter: Element) => {
       const target = parseInt(counter.getAttribute("data-target") || "0");
       const duration = 2000; // 2 seconds
@@ -203,16 +207,19 @@ import Button from "../ui/Button.astro";
     };
 
     // Create an Intersection Observer to trigger animation when visible
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counter = entry.target;
-          animateCounter(counter);
-          observer.unobserve(counter); // Only animate once
-        }
-      });
-    }, { threshold: 0.5 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            animateCounter(counter);
+            observer.unobserve(counter); // Only animate once
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
 
-    counters.forEach(counter => observer.observe(counter));
+    counters.forEach((counter) => observer.observe(counter));
   });
 </script>

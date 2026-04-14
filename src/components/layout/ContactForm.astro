@@ -13,7 +13,7 @@ const {
 ---
 
 <div class="bg-white p-8 md:p-12 shadow-lg">
-    <h2 class="heading-h2 font-heading font-bold text-primary mb-4">
+    <h2 class="heading-h2 font-heading font-bold text-[#1e3a5f] mb-4">
         {title}
     </h2>
     <p class="text-lg text-gray-600 mb-8 font-body">
@@ -23,59 +23,77 @@ const {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <label
-                    class="block font-heading font-bold mb-2 text-base text-primary"
+                    for="firstName"
+                    class="block font-heading font-bold mb-2 text-base text-[#1e3a5f]"
                 >
                     First Name *
                 </label>
                 <input
                     type="text"
+                    id="firstName"
+                    name="firstName"
                     class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base font-body"
                     required
+                    aria-required="true"
                 />
             </div>
             <div>
                 <label
-                    class="block font-heading font-bold mb-2 text-base text-primary"
+                    for="lastName"
+                    class="block font-heading font-bold mb-2 text-base text-[#1e3a5f]"
                 >
                     Last Name *
                 </label>
                 <input
                     type="text"
+                    id="lastName"
+                    name="lastName"
                     class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base font-body"
                     required
+                    aria-required="true"
                 />
             </div>
         </div>
         <div>
             <label
-                class="block font-heading font-bold mb-2 text-base text-primary"
+                for="email"
+                class="block font-heading font-bold mb-2 text-base text-[#1e3a5f]"
             >
                 Email Address *
             </label>
             <input
                 type="email"
+                id="email"
+                name="email"
                 class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base font-body"
                 required
+                aria-required="true"
             />
         </div>
         <div>
             <label
-                class="block font-heading font-bold mb-2 text-base text-primary"
+                for="phone"
+                class="block font-heading font-bold mb-2 text-base text-[#1e3a5f]"
             >
                 Phone Number
             </label>
             <input
                 type="tel"
+                id="phone"
+                name="phone"
                 class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base font-body"
             />
         </div>
         <div>
             <label
-                class="block font-heading font-bold mb-2 text-base text-primary"
+                for="service"
+                class="block font-heading font-bold mb-2 text-base text-[#1e3a5f]"
             >
                 Service Interested In
             </label>
             <select
+                id="service"
+                name="service"
                 class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors text-base font-body"
             >
                 <option>Select a service</option>
@@ -87,19 +105,24 @@ const {
         </div>
         <div>
             <label
-                class="block font-heading font-bold mb-2 text-base text-primary"
+                for="message"
+                class="block font-heading font-bold mb-2 text-base text-[#1e3a5f]"
             >
                 Your Message *
             </label>
             <textarea
+                id="message"
+                name="message"
                 class="w-full px-4 py-3 border-2 border-gray-300 focus:border-accent focus:outline-none transition-colors h-32 text-base font-body"
                 required
+                aria-required="true"
                 placeholder="Tell us about your project..."></textarea>
         </div>
         <Button
             variant="accent"
             size="md"
             icon={false}
+            type="submit"
             class="w-full md:w-auto"
         >
             Send Message

@@ -20,7 +20,10 @@ function getTradeIcon(tradeName: string) {
 }
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 h-29 transition-transform duration-300 ease-in-out" id="navbar">
+<nav
+  class="fixed top-0 left-0 right-0 z-50 h-29 transition-transform duration-300 ease-in-out"
+  id="navbar"
+>
   <!-- Mobile Orange angled section -->
   <div class="absolute inset-0 bg-primary lg:hidden">
     <div
@@ -38,7 +41,9 @@ function getTradeIcon(tradeName: string) {
   </div>
 
   <!-- Desktop Content -->
-  <div class="desktop-content relative z-10 flex h-full w-full px-8 hidden lg:flex">
+  <div
+    class="desktop-content relative z-10 flex h-full w-full px-8 hidden lg:flex"
+  >
     <!-- White background for logo area - extends to left edge but follows logo -->
     <div
       class="absolute inset-y-0 right-0 bg-white z-20"
@@ -67,7 +72,9 @@ function getTradeIcon(tradeName: string) {
     <!-- Right content section - starts after white background with proper spacing - DESKTOP ONLY -->
     <div class="flex flex-col h-full flex-1 ml-18">
       <!-- Top row with contact info and quote button -->
-      <div class="contact-row flex items-center h-10 flex-1 relative justify-between">
+      <div
+        class="contact-row flex items-center h-10 flex-1 relative justify-between"
+      >
         <!-- Black background extending from logo area to right edge -->
         <div
           class="absolute inset-y-0 bg-black hidden lg:block"
@@ -78,7 +85,10 @@ function getTradeIcon(tradeName: string) {
         <div
           class="flex items-center gap-16 h-full text-base justify-start relative z-10 ml-10"
         >
-          <a href="mailto:info@buildpro.com" class="flex items-center gap-2 hover:text-accent transition-colors">
+          <a
+            href="mailto:info@buildpro.com"
+            class="flex items-center gap-2 hover:text-accent transition-colors"
+          >
             <svg
               class="w-5 h-5 text-accent"
               fill="currentColor"
@@ -92,7 +102,12 @@ function getTradeIcon(tradeName: string) {
             </svg>
             <p class="text-white text-base font-body">info@buildpro.com</p>
           </a>
-          <a href="https://maps.google.com/?q=123+Brooklyn+New+Street,+USA" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-accent transition-colors">
+          <a
+            href="https://maps.google.com/?q=123+Brooklyn+New+Street,+USA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 hover:text-accent transition-colors"
+          >
             <svg
               class="w-5 h-5 text-accent"
               fill="currentColor"
@@ -103,9 +118,14 @@ function getTradeIcon(tradeName: string) {
                 d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                 clip-rule="evenodd"></path>
             </svg>
-            <p class="text-white text-base font-body">123 Brooklyn New Street, USA</p>
+            <p class="text-white text-base font-body">
+              123 Brooklyn New Street, USA
+            </p>
           </a>
-          <a href="tel:+15551234567" class="flex items-center gap-2 hover:text-accent transition-colors">
+          <a
+            href="tel:+15551234567"
+            class="flex items-center gap-2 hover:text-accent transition-colors"
+          >
             <svg
               class="w-5 h-5 text-accent"
               fill="currentColor"
@@ -181,7 +201,11 @@ function getTradeIcon(tradeName: string) {
                 class="text-m font-body font-semibold hover:text-orange-400 transition-colors uppercase tracking-wide flex items-center"
               >
                 TRADES WE SERVE
-                <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  class="ml-1 w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path
                     fill-rule="evenodd"
                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -371,7 +395,9 @@ function getTradeIcon(tradeName: string) {
                   />
                 </svg>
                 <div>
-                  <div class="font-body font-medium text-sm">{trade.data.name}</div>
+                  <div class="font-body font-medium text-sm">
+                    {trade.data.name}
+                  </div>
                 </div>
               </a>
             ))
@@ -408,32 +434,34 @@ function getTradeIcon(tradeName: string) {
   .navbar-compact .contact-row {
     display: none;
   }
-  
+
   .contact-row {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
   }
-  
+
   .navbar-compact {
     height: 3rem;
     transition: height 0.4s ease-in-out;
   }
-  
+
   .navbar-compact .desktop-content {
     flex-direction: row;
     align-items: center;
     height: 3rem;
     transition: all 0.4s ease-in-out;
   }
-  
+
   .navbar-compact .logo-section {
     height: 3rem;
     width: auto;
     min-width: 200px;
     transition: all 0.3s ease-in-out;
   }
-  
+
   .navbar-compact .nav-section {
     height: 3rem;
     margin-left: 0;
@@ -442,67 +470,69 @@ function getTradeIcon(tradeName: string) {
     display: flex !important;
     transition: all 0.3s ease-in-out;
   }
-  
+
   .navbar-compact .nav-section .nav-links {
     margin-left: 2rem;
     transition: margin-left 0.3s ease-in-out;
   }
-  
+
   .navbar-compact .compact-quote-btn {
     display: flex !important;
   }
-  
+
   .navbar-compact .right-content {
     display: none;
   }
-  
+
   .navbar-compact .contact-row {
     display: none;
   }
-  
+
   .right-content {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
   }
-  
+
   /* Hide background elements in compact mode */
   .navbar-compact .desktop-bg,
   .navbar-compact .contact-bg,
   .navbar-compact .nav-bg {
     display: none;
   }
-  
+
   /* Hide original quote buttons in compact mode */
   .navbar-compact .contact-row a[href="/contact"] {
     display: none !important;
   }
-  
+
   .desktop-bg,
   .contact-bg,
   .nav-bg {
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
   }
-  
+
   /* Smooth transitions for all navbar elements */
   .desktop-content,
   .logo-section,
   .nav-section {
     transition: all 0.3s ease-in-out;
   }
-  
+
   /* Enhanced navbar transform animation - simplified for sticky behavior */
   #navbar {
     transition: height 0.4s ease-in-out;
   }
-  
+
   /* Mobile compact state - same as normal for mobile */
   @media (max-width: 1023px) {
     .navbar-compact {
       height: 7.25rem; /* h-29 equivalent */
     }
-    
+
     .navbar-compact .mobile-content {
       height: 7.25rem;
     }
@@ -530,9 +560,9 @@ function getTradeIcon(tradeName: string) {
 
     function updateNavbar() {
       if (!navbar) return; // Guard clause for null navbar
-      
+
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY < 10) {
         // At top - show full navbar
         navbar.classList.remove("navbar-compact");
@@ -541,7 +571,7 @@ function getTradeIcon(tradeName: string) {
         // Scrolled down - show compact navbar (always sticky)
         navbar.classList.add("navbar-compact");
         navbar.style.transform = "translateY(0)";
-        
+
         // Close mobile menu if open when switching to compact
         if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
           mobileMenu.classList.add("hidden");
@@ -555,7 +585,7 @@ function getTradeIcon(tradeName: string) {
           }
         }
       }
-      
+
       ticking = false;
     }
 
@@ -569,7 +599,7 @@ function getTradeIcon(tradeName: string) {
     // Only add scroll listener if navbar exists
     if (navbar) {
       window.addEventListener("scroll", requestTick, { passive: true });
-      
+
       // Initial call to set correct state
       updateNavbar();
     }
