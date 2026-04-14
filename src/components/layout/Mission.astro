@@ -1,63 +1,70 @@
 ---
-// Mission component - displays company mission with numbered cards
+interface MissionItem {
+    number: string;
+    title: string;
+    description: string;
+}
+
 interface Props {
-    title?: string;
-    subtitle?: string;
-    missions?: Array<{
-        number: number;
-        title: string;
-        description: string;
-    }>;
-    className?: string;
+    heading?: string;
+    subheading?: string;
+    items?: MissionItem[];
 }
 
 const {
-    title = "Our Mission",
-    subtitle = "We're committed to delivering excellence through these guiding principles",
-    missions = [
+    heading = "Our Mission",
+    subheading = "We're committed to delivering excellence through these guiding principles",
+    items = [
         {
-            number: 1,
-            title: "Empower Contractors",
-            description: "We provide contractors with professional digital tools that help them grow their businesses and reach more customers effectively."
+            number: "1",
+            title: "Enable Growth",
+            description: "We provide contractors with professional digital tools that help them grow their businesses and reach more customers effectively.",
         },
         {
-            number: 2,
+            number: "2",
             title: "Drive Results",
-            description: "Every template we create is designed with conversion in mind, helping our clients generate more leads and close more deals."
+            description: "Every template we create is designed with conversion in mind, helping our clients generate more leads and close more deals.",
         },
         {
-            number: 3,
+            number: "3",
             title: "Build Trust",
-            description: "We create lasting partnerships by delivering quality work, transparent pricing, and exceptional support to every client we serve."
-        }
+            description: "We create lasting partnerships by delivering quality work, transparent pricing, and exceptional ongoing support to every client we serve.",
+        },
     ],
-    className = ""
 } = Astro.props;
 ---
 
-<section class={`py-16 px-6 bg-background ${className}`}>
-    <div class="max-w-6xl mx-auto">
+<section class="py-16 px-6 bg-background">
+    <div class="max-w-7xl mx-auto">
         <div class="text-center mb-12">
-            <h2 class="heading-h2 font-heading font-bold text-primary mb-4">
-                {title}
+            <h2 class="heading-h2 font-heading font-bold text-[#1e3a5f] mb-4">
+                {heading}
             </h2>
             <p class="text-xl font-body text-gray-600 max-w-5xl mx-auto">
-                {subtitle}
+                {subheading}
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {missions.map((mission) => (
-                <div class="bg-white p-8 shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0 rounded-lg">
-                            <span class="text-2xl font-heading font-bold text-white">{mission.number}</span>
+            {
+                items.map((item) => (
+                    <div class="bg-white p-10 shadow-lg">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-accent flex items-center justify-center shrink-0">
+                                <span class="text-2xl font-heading font-bold text-white">
+                                    {item.number}
+                                </span>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-[#1e3a5f]">
+                                {item.title}
+                            </h3>
                         </div>
-                        <h3 class="text-xl font-heading font-bold text-primary">{mission.title}</h3>
+                        <p class="font-body text-gray-600 text-[18px]">
+                            {item.description}
+                        </p>
                     </div>
-                    <p class="font-body text-gray-600 leading-relaxed">{mission.description}</p>
-                </div>
-            ))}
+                ))
+            }
         </div>
     </div>
 </section>

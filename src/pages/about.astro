@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/layout/Hero2.astro";
 import AboutSection from "../components/layout/About.astro";
+import FAQ from "../components/layout/FAQ.astro";
+import Mission from "../components/layout/Mission.astro";
 ---
 
 <BaseLayout
@@ -14,91 +16,6 @@ import AboutSection from "../components/layout/About.astro";
     />
 
     <AboutSection />
-
-    <section class="py-16 px-6 bg-background">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2
-                    class="heading-h2 font-heading font-bold text-[#1e3a5f] mb-4"
-                >
-                    Our Mission
-                </h2>
-                <p class="text-xl font-body text-gray-600 max-w-5xl mx-auto">
-                    We're committed to delivering excellence through these
-                    guiding principles
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-10 shadow-lg">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-12 h-12 bg-accent flex items-center justify-center shrink-0"
-                        >
-                            <span
-                                class="text-2xl font-heading font-bold text-white"
-                                >1</span
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-heading font-bold text-[#1e3a5f]"
-                        >
-                            Enable Growth
-                        </h3>
-                    </div>
-                    <p class="font-body text-gray-600 text-[18px]">
-                        We provide contractors with professional digital tools
-                        that help them grow their businesses and reach more
-                        customers effectively.
-                    </p>
-                </div>
-
-                <div class="bg-white p-10 shadow-lg">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-12 h-12 bg-accent flex items-center justify-center shrink-0"
-                        >
-                            <span
-                                class="text-2xl font-heading font-bold text-white"
-                                >2</span
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-heading font-bold text-[#1e3a5f]"
-                        >
-                            Drive Results
-                        </h3>
-                    </div>
-                    <p class="font-body text-gray-600 text-[18px]">
-                        Every template we create is designed with conversion in
-                        mind, helping our clients generate more leads and close
-                        more deals.
-                    </p>
-                </div>
-
-                <div class="bg-white p-10 shadow-lg">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-12 h-12 bg-accent flex items-center justify-center shrink-0"
-                        >
-                            <span
-                                class="text-2xl font-heading font-bold text-white"
-                                >3</span
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-heading font-bold text-[#1e3a5f]"
-                        >
-                            Build Trust
-                        </h3>
-                    </div>
-                    <p class="font-body text-gray-600 text-[18px]">
-                        We create lasting partnerships by delivering quality
-                        work, transparent pricing, and exceptional ongoing
-                        support to every client we serve.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <Mission />
+    <FAQ />
 </BaseLayout>
