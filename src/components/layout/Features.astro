@@ -13,19 +13,19 @@ const {
             icon: "mobile",
             title: "Mobile-First Design",
             description:
-                "Perfect for contractors on the go. Your customers can book services from any device.",
+                "Perfect for contractors on the go. Your customers can easily book services from any device, whether phone or desktop.",
         },
         {
             icon: "lightning",
             title: "Fast Loading",
             description:
-                "Optimized for speed. Get found on Google and convert more visitors into customers.",
+                "Optimized for speed. Get found on Google with lightning-fast load times and convert more visitors into paying customers.",
         },
         {
             icon: "shield",
             title: "Trust & Credibility",
             description:
-                "Built-in review sections, certifications, and trust badges to help win more jobs.",
+                "Built-in review sections, certifications, and trust badges to help win more jobs. Showcase credentials and build trust.",
         },
     ],
 } = Astro.props;
@@ -41,7 +41,7 @@ const getIcon = (iconName: string) => {
 ---
 
 <section class="py-16 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="heading-h2 font-heading font-bold text-[#1e3a5f] mb-4">
                 {title}
@@ -54,8 +54,8 @@ const getIcon = (iconName: string) => {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             {
                 features.map((feature) => (
-                    <div class="text-center p-8 bg-gray-50 border border-gray-200 transition-all duration-300 hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-accent mx-auto mb-6 flex items-center justify-center">
+                    <div class="text-center p-8 bg-white border-2 border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:border-accent">
+                        <div class="w-16 h-16 bg-accent mx-auto mb-6 flex items-center justify-center rounded-lg transform transition-transform duration-300 hover:scale-110">
                             <svg
                                 class="w-8 h-8 text-white"
                                 fill="none"
@@ -73,7 +73,7 @@ const getIcon = (iconName: string) => {
                         <h3 class="text-xl font-heading font-bold text-[#1e3a5f] mb-4">
                             {feature.title}
                         </h3>
-                        <p class="font-body text-gray-600">
+                        <p class="font-body text-gray-600 leading-relaxed">
                             {feature.description}
                         </p>
                     </div>

@@ -24,7 +24,7 @@ const {
         },
         {
             question: "Can I customize the template to match my brand?",
-            answer: "Absolutely! All our templates are fully customizable. You can adjust colors, fonts, images, and layout to perfectly match your brand identity and business needs.",
+            answer: "Absolutely! All our templates are fully customizable. You can adjust colors, fonts, images, and layout to perfectly match your brand identity and business needs. Make it uniquely yours today.",
         },
         {
             question: "What kind of support do you provide?",
@@ -33,10 +33,6 @@ const {
         {
             question: "Are the websites mobile-friendly?",
             answer: "Yes, all our templates are fully responsive and optimized for mobile devices. Your website will look great and function perfectly on smartphones, tablets, and desktop computers.",
-        },
-        {
-            question: "What's included in the template price?",
-            answer: "Each template includes the complete website design, all necessary pages, contact forms, SEO optimization, mobile responsiveness, and one year of technical support and updates.",
         },
     ],
 } = Astro.props;
@@ -53,16 +49,28 @@ const {
             </p>
         </div>
 
-        <div class="space-y-4">
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <!-- Left Side Image -->
+            <div class="hidden lg:block">
+                <img
+                    src="/images/about2.avif"
+                    alt="Professional contractor discussing services"
+                    class="w-full h-[520px] object-cover"
+                />
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="space-y-4">
             {
                 faqs.map((faq, index) => (
-                    <div class="faq-item bg-white transition-all duration-300">
+                    <div class="faq-item bg-white transition-all duration-300 border border-gray-200">
                         <button
                             class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 transition-colors"
                             aria-expanded="false"
                             data-faq-index={index}
                         >
-                            <span class="text-xl font-heading font-bold text-[#1e3a5f] pr-4">
+                            <span class="text-[18px] font-heading font-bold text-[#1e3a5f] pr-4 whitespace-nowrap overflow-hidden">
                                 {faq.question}
                             </span>
                             <div class="faq-icon shrink-0 transition-transform duration-300">
@@ -91,6 +99,7 @@ const {
                     </div>
                 ))
             }
+            </div>
         </div>
     </div>
 </section>
@@ -126,6 +135,20 @@ const {
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const faqButtons = document.querySelectorAll(".faq-question");
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        // Open the first FAQ by default
+        if (faqItems.length > 0) {
+            const firstItem = faqItems[0];
+            const firstAnswer = firstItem.querySelector(".faq-answer");
+            const firstButton = firstItem.querySelector(".faq-question");
+            
+            firstItem.classList.add("active");
+            if (firstAnswer instanceof HTMLElement) {
+                firstAnswer.style.maxHeight = firstAnswer.scrollHeight + "px";
+            }
+            firstButton?.setAttribute("aria-expanded", "true");
+        }
 
         faqButtons.forEach((button) => {
             button.addEventListener("click", () => {
